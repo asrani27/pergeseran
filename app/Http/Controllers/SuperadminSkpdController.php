@@ -27,6 +27,10 @@ class SuperadminSkpdController extends Controller
         $n->password = bcrypt('adminskpd');
         $n->save();
 
+        $skpd->update([
+            'user_id' => $n->id,
+        ]);
+
         $n->roles()->attach($role);
 
         Session::flash('success', 'Berhasil Dibuat, Password : adminskpd');
@@ -45,10 +49,14 @@ class SuperadminSkpdController extends Controller
         $skpd = Skpd::find($id);
 
         $n = new User;
-        $n->name = $skpd->nama;
-        $n->username = $skpd->kode_skpd;
+        $n->name = 'Pimpinan ' . $skpd->nama;
+        $n->username = 'pimpinan_' . $skpd->kode_skpd;
         $n->password = bcrypt('pimpinan');
         $n->save();
+
+        $skpd->update([
+            'kepala_id' => $n->id,
+        ]);
 
         $n->roles()->attach($role);
 
