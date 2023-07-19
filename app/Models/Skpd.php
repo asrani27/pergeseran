@@ -15,4 +15,9 @@ class Skpd extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function kepala()
+    {
+        return $this->belongsTo(User::class, 'kepala_id');
+    }
 }

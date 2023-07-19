@@ -15,7 +15,8 @@
             <table class="table table-hover">
               <tbody><tr>
                 <th>No</th>
-                <th>Kode SKPD</th>
+                <th>Username SKPD</th>
+                <th>Username Pimpinan SKPD</th>
                 <th>Nama SKPD</th>
                 <th>Aksi</th>
               </tr>
@@ -23,18 +24,23 @@
               <tr>
                 <td>{{$key + 1}}</td>
                 <td>{{$item->kode_skpd}}</td>
+                <td>pimpinan_{{$item->kode_skpd}}</td>
                 <td>{{$item->nama}}</td>
                 <td>
                     @if ($item->user == null)
                     <a href="/superadmin/skpd/createakun/{{$item->id}}" class="btn btn-xs btn-default"><i
                             class="fa fa-key"></i> Buat Akun SKPD</a>
-                    {{-- <a href="/superadmin/skpd/kepala/createakun/{{$item->id}}" class="btn btn-xs btn-default"><i
-                            class="fa fa-key"></i> Buat Akun Kepala SKPD</a> --}}
                     @else
                     <a href="/superadmin/skpd/resetakun/{{$item->id}}" class="btn btn-xs bg-teal-active"><i
                             class="fa fa-key"></i> Reset Akun SKPD</a>
-                    {{-- <a href="/superadmin/skpd/kepala/resetakun/{{$item->id}}" class="btn btn-xs bg-teal-active"><i
-                            class="fa fa-key"></i> Reset Akun Kepala SKPD</a> --}}
+                    @endif
+
+                    @if ($item->kepala == null)
+                    <a href="/superadmin/skpd/kepala/createakun/{{$item->id}}" class="btn btn-xs btn-default"><i
+                            class="fa fa-key"></i> Buat Akun Pimpinan SKPD</a>
+                    @else
+                    <a href="/superadmin/skpd/kepala/resetakun/{{$item->id}}" class="btn btn-xs bg-teal-active"><i
+                            class="fa fa-key"></i> Reset Akun Pimpinan SKPD</a>
                     @endif
                 </td>
               </tr>

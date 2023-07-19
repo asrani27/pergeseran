@@ -25,7 +25,7 @@
             <div class="col-xs-6">
                 <div class="form-group">
                 <label>No Surat</label>
-                <input type="email" class="form-control" placeholder="no surat">
+                <input type="text" class="form-control" placeholder="no surat">
                 </div>
             </div>
             <div class="col-xs-6">
@@ -46,14 +46,194 @@
                   <select class="form-control select2" style="width: 100%;" required>
                     <option selected="">Pilih Tipe Pengajuan Perubahan</option>
                     <option value="1">Antar Objek</option>
+                    <option value="2">Antar Rincian Objek</option>
+                    <option value="3">Antar Sub Rincian Objek</option>
+                    <option value="4">Perubahan Uraian</option>
                   </select>
                 </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+                <label>Hal</label>
+                <input type="text" class="form-control" placeholder="hal">
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+                <label>Kalimat pengantar</label>
+                <textarea rows="4" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+                <label>Lampiran</label>
+                <input type="file" class="form-control">
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+                <label>Program</label>
+                  <select class="form-control select2" style="width: 100%;" required>
+                    <option selected="">Pilih Program</option>
+                    <option value="a">Program A</option>
+                  </select>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+                <label>Kegiatan</label>
+                  <select class="form-control select2" style="width: 100%;" required>
+                    <option selected="">Pilih Kegiatan</option>
+                    <option value="a">Kegiatan A</option>
+                  </select>
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <div class="form-group">
+                <label>Sub Kegiatan</label>
+                  <select class="form-control select2" style="width: 100%;" required>
+                    <option selected="">Pilih Subkegiatan</option>
+                    <option value="a">Subkegiatan A</option>
+                  </select>
+                </div>
+            </div>
+            <div class="col-xs-12">
+              <div class="box box-primary box-solid">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Perubahan Rekening</h3>
+    
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                  </div>
+                  <!-- /.box-tools -->
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body" style="">
+                    <div class="col-xs-12">
+                      <div class="box box-info box-solid">
+                        <div class="box-header with-border">
+                          <h3 class="box-title">Sebelum Dirubah</h3>
+                          <!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body" style="">
+                          
+                          <div class="col-xs-6">
+                              <div class="form-group">
+                              <label>Rekening Awal</label>
+                              <select class="form-control select2" style="width: 100%;" required>
+                                <option selected="">Pilih Rekening</option>
+                                <option value="a">Rekening A</option>
+                              </select>
+                              </div>
+                          </div>
+                          <div class="col-xs-2">
+                              <div class="form-group">
+                              <label>Jumlah</label>
+                              <input type="text" class="form-control" placeholder="jumlah" required>
+                              </div>
+                          </div>
+                          <div class="col-xs-4">
+                              <div class="form-group">
+                              <label>Nominal Rekening Awal</label>
+                              <input type="text" class="form-control" placeholder="nominal" readonly>
+                              </div>
+                          </div>
+                          
+                          <div class="col-xs-6">
+                              <div class="form-group">
+                              <label>Standar Satuan Harga</label>
+                              <select class="form-control select2" style="width: 100%;" required>
+                                <option selected="">Pilih Standar Satuan Harga</option>
+                                <option value="a">Harga A</option>
+                              </select>
+                              </div>
+                          </div>
+                          <div class="col-xs-2">
+                              <div class="form-group">
+                              <label>Jumlah</label>
+                              <input type="text" class="form-control" placeholder="jumlah" required>
+                              </div>
+                          </div>
+                          <div class="col-xs-4">
+                              <div class="form-group">
+                              <label>Nominal Standar Satuan Harga</label>
+                              <input type="text" class="form-control" readonly>
+                              </div>
+                          </div>
+                        </div>
+                        <!-- /.box-body -->
+                      </div>
+                      <!-- /.box -->
+                    </div>
+                    <div class="col-xs-12">
+                      <div class="box box-info box-solid">
+                        <div class="box-header with-border">
+                          <h3 class="box-title">Setelah Dirubah</h3>
+                          <!-- /.box-tools -->
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body" style="">
+                          
+                          <div class="col-xs-6">
+                              <div class="form-group">
+                              <label>Diganti Menjadi</label>
+                              <select class="form-control select2" style="width: 100%;" required>
+                                <option selected="">Pilih Rekening</option>
+                                <option value="a">Rekening A</option>
+                              </select>
+                              </div>
+                          </div>
+                          <div class="col-xs-2">
+                              <div class="form-group">
+                              <label>Jumlah</label>
+                              <input type="text" class="form-control" placeholder="jumlah" required>
+                              </div>
+                          </div>
+                          <div class="col-xs-4">
+                              <div class="form-group">
+                              <label>Nominal Rekening Akhir</label>
+                              <input type="text" class="form-control" placeholder="nominal" readonly>
+                              </div>
+                          </div>
+                          
+                          <div class="col-xs-6">
+                              <div class="form-group">
+                              <label>Standar Satuan Harga</label>
+                              <select class="form-control select2" style="width: 100%;" required>
+                                <option selected="">Pilih Standar Satuan Harga</option>
+                                <option value="a">Harga A</option>
+                              </select>
+                              </div>
+                          </div>
+                          <div class="col-xs-2">
+                              <div class="form-group">
+                              <label>Jumlah</label>
+                              <input type="text" class="form-control" placeholder="jumlah" required>
+                              </div>
+                          </div>
+                          <div class="col-xs-4">
+                              <div class="form-group">
+                              <label>Nominal Standar Satuan Harga</label>
+                              <input type="text" class="form-control" readonly>
+                              </div>
+                          </div>
+                        </div>
+                        <!-- /.box-body -->
+                      </div>
+                      <!-- /.box -->
+                    </div>
+                </div>
+                <!-- /.box-body -->
+              </div>
+              <!-- /.box -->
             </div>
           </div>
           <!-- /.box-body -->
 
-          <div class="box-footer">
-            <button type="submit" class="btn btn-primary">Submit</button>
+          <div class="box-footer text-center">
+            <button type="submit" class="btn btn-primary"> <i class="fa fa-send"></i>  Kirim</button>
           </div>
         </form>
       </div>

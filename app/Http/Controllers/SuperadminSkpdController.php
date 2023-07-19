@@ -27,11 +27,6 @@ class SuperadminSkpdController extends Controller
         $n->password = bcrypt('adminskpd');
         $n->save();
 
-        $skpd->update([
-            'user_id' => $n->id,
-            'murni' => 1,
-        ]);
-
         $n->roles()->attach($role);
 
         Session::flash('success', 'Berhasil Dibuat, Password : adminskpd');
@@ -42,6 +37,29 @@ class SuperadminSkpdController extends Controller
     {
         Skpd::find($id)->user->update(['password' => bcrypt('adminskpd')]);
         Session::flash('success', 'Password : adminskpd');
+        return back();
+    }
+    public function createakunkepala($id)
+    {
+        $role = Role::where('name', 'kadis')->first();
+        $skpd = Skpd::find($id);
+
+        $n = new User;
+        $n->name = $skpd->nama;
+        $n->username = $skpd->kode_skpd;
+        $n->password = bcrypt('pimpinan');
+        $n->save();
+
+        $n->roles()->attach($role);
+
+        Session::flash('success', 'Berhasil Dibuat, Password : pimpinan');
+        return back();
+    }
+
+    public function resetakunkepala($id)
+    {
+        Skpd::find($id)->user->update(['password' => bcrypt('pimpinan')]);
+        Session::flash('success', 'Password : pimpinan');
         return back();
     }
 }
