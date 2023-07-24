@@ -24,12 +24,14 @@
               <input type="text" class="form-control" placeholder="no surat">
               </div>
             </div>
+            
             </tbody>
           </table>
         </div>
         <!-- /.box-body -->
       </div>
-      <!-- /.box -->
+
+
       <div class="box" style="border-top-color: #008080">
         <div class="box-body">
           <table class="table table-condensed">
@@ -60,18 +62,22 @@
                   @if ($item->status_operator == 0)
                   <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
                   @else
-                  <a href="/admin/beranda/detail/{{$item->id}}" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                  <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
                   @endif
                 </td>
                 <td class="text-center">
                   @if ($item->status_kepala_skpd == 0)
-                  <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
-                  @else
+                  <a href="/pimpinan/pengajuan/{{$item->id}}" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
+                  @elseif ($item->status_kepala_skpd == 1)
                   <a href="#"utton class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                  @elseif ($item->status_kepala_skpd == 2)
+                  <a href="#"utton class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
                   @endif
                 </td>
                 <td class="text-center">
-                  @if ($item->status_bpkpad == 0)
+                  @if($item->status_kepala_skpd == 1 && $item->status_operator == 1)
+                  <a href="#"utton class="btn btn-xs btn-primary"><i class="fa fa-hourglass"></i></a>
+                  @elseif($item->status_bpkpad == 0)
                   <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
                   @else
                   <a href="#"utton class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
@@ -85,6 +91,7 @@
         </div>
         <!-- /.box-body -->
       </div>
+      <!-- /.box -->
     </div>
   </div>
 </section>

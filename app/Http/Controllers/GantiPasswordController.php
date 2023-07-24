@@ -10,4 +10,8 @@ class GantiPasswordController extends Controller
     {
         return view('admin.gantipass');
     }
+    public function index()
+    {
+        return view('gantipass');
+    }
 }
