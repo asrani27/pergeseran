@@ -83,6 +83,10 @@
                           
                       <a href="/pimpinan/pengajuan/{{$item->id}}/detail" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
                           @break
+                      @case(3)
+                          
+                      <a href="/pimpinan/pengajuan/{{$item->id}}/detail" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                          @break
                       @default
                           
                       <a href="/pimpinan/pengajuan/{{$item->id}}/detail" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>

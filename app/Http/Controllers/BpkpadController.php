@@ -64,4 +64,24 @@ class BpkpadController extends Controller
         Session::flash('warning', 'Pengajuan Ditolak');
         return redirect('/bpkpad/beranda');
     }
+    public function simpanTerima(Request $req)
+    {
+        $data = Pengajuan::find($req->terima_id)->update([
+            'status_bpkpad' => 2,
+            'ket_bpkpad' => $req->ket_bpkpad
+        ]);
+
+        Session::flash('success', 'Pengajuan Diterima');
+        return redirect('/bpkpad/beranda');
+    }
+    public function simpanTolak(Request $req)
+    {
+        $data = Pengajuan::find($req->tolak_id)->update([
+            'status_kepala_skpd' => 3,
+            'ket_bpkpad' => $req->ket_bpkpad
+
+        ]);
+        Session::flash('warning', 'Pengajuan Ditolak');
+        return redirect('/bpkpad/beranda');
+    }
 }

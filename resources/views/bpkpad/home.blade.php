@@ -4,6 +4,56 @@
 @endpush
 @section('content')
 <section class="content">
+  <div class="row">
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon" style="background-color: #008080"><i class="fa fa-file-o" style="color: aliceblue"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">TOTAL PENGAJUAN</span>
+          <span class="info-box-number">1</span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon" style="background-color: #008080"><i class="fa fa-file-o" style="color: aliceblue"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">PENGAJUAN DI TOLAK</span>
+          <span class="info-box-number">0</span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon" style="background-color: #008080"><i class="fa fa-file-o" style="color: aliceblue"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">PENGAJUAN DITERIMA</span>
+          <span class="info-box-number">1</span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="info-box">
+        <span class="info-box-icon" style="background-color: #008080"><i class="fa fa-calendar" style="color: aliceblue"></i></span>
+
+        <div class="info-box-content">
+          <span class="info-box-text">date</span>
+          <span class="info-box-number">{{\Carbon\Carbon::now()->format('d-m-Y')}}</span>
+        </div>
+        <!-- /.info-box-content -->
+      </div>
+      <!-- /.info-box -->
+    </div>
+  </div>
   <div class="row text-center">
     <h1><strong>DAFTAR PENGAJUAN PERGESERAN ANGGARAN</strong></h1>
     <h3>FILTER SURAT</h3>
@@ -88,6 +138,10 @@
                           
                       <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
                           @break
+                      @case(3)
+                          
+                      <a href="#" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                          @break
                       @default
                           
                       <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
@@ -103,6 +157,10 @@
                       @case(2)
                           
                       <a href="/bpkpad/pengajuan/{{$item->id}}/detail" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                          @break
+                      @case(3)
+                          
+                      <a href="/bpkpad/pengajuan/{{$item->id}}/detail" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
                           @break
                       @default
                           

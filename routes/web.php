@@ -82,6 +82,8 @@ Route::group(['middleware' => ['auth', 'role:kadis']], function () {
         Route::get('pengajuan/{id}/detail', [KadisController::class, 'detail']);
         Route::get('pengajuan/{id}/terima', [KadisController::class, 'terima']);
         Route::get('pengajuan/{id}/tolak', [KadisController::class, 'tolak']);
+        Route::post('pengajuan/terima', [KadisController::class, 'simpanTerima']);
+        Route::post('pengajuan/tolak', [KadisController::class, 'simpanTolak']);
     });
 });
 
@@ -93,6 +95,8 @@ Route::group(['middleware' => ['auth', 'role:bpkpad']], function () {
         Route::get('pengajuan/{id}/detail', [BpkpadController::class, 'detail']);
         Route::get('pengajuan/{id}/terima', [BpkpadController::class, 'terima']);
         Route::get('pengajuan/{id}/tolak', [BpkpadController::class, 'tolak']);
+        Route::post('pengajuan/terima', [BpkpadController::class, 'simpanTerima']);
+        Route::post('pengajuan/tolak', [BpkpadController::class, 'simpanTolak']);
     });
 });
 

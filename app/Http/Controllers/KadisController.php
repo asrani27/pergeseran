@@ -61,7 +61,28 @@ class KadisController extends Controller
     public function tolak($id)
     {
         $data = Pengajuan::find($id)->update([
-            'status_kepala_skpd' => 3
+            'status_kepala_skpd' => 3,
+        ]);
+        Session::flash('warning', 'Pengajuan Ditolak');
+        return redirect('/pimpinan/beranda');
+    }
+    public function simpanTerima(Request $req)
+    {
+        $data = Pengajuan::find($req->terima_id)->update([
+            'status_kepala_skpd' => 2,
+            'status_bpkpad' => 1,
+            'ket_kepala_skpd' => $req->ket_kepala_skpd
+        ]);
+
+        Session::flash('success', 'Pengajuan Diterima');
+        return redirect('/pimpinan/beranda');
+    }
+    public function simpanTolak(Request $req)
+    {
+        $data = Pengajuan::find($req->tolak_id)->update([
+            'status_kepala_skpd' => 3,
+            'ket_kepala_skpd' => $req->ket_kepala_skpd
+
         ]);
         Session::flash('warning', 'Pengajuan Ditolak');
         return redirect('/pimpinan/beranda');

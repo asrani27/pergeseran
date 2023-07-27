@@ -236,10 +236,10 @@
             </div>
           </div>
           <!-- /.box-body -->
-
+          {{-- /pimpinan/pengajuan/{{$data->id}}/terima --}}
           <div class="box-footer text-center">
-            <a href="/pimpinan/pengajuan/{{$data->id}}/tolak" class="btn btn-danger" onclick="return confirm('Yakin pengajuan ini di tolak?');"> <i class="fa fa-times"></i>  Tolak Pengajuan</a>
-            <a href="/pimpinan/pengajuan/{{$data->id}}/terima" class="btn btn-primary" onclick="return confirm('Yakin pengajuan ini di terima?');"> <i class="fa fa-send"></i>  Terima Pengajuan</a>
+            <button type="button" class="btn btn-danger kadis-menolak" data-id="{{$data->id}}"> <i class="fa fa-times"></i>  Tolak Pengajuan</button>
+            <button type="button" class="btn btn-primary kadis-menerima" data-id="{{$data->id}}"> <i class="fa fa-send"></i>  Terima Pengajuan</button>
           </div>
         </form>
       </div>
@@ -247,10 +247,74 @@
   </div>
 </section>
 
-
+<div class="modal fade" id="modal-tolak">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-red">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="ion ion-clipboard"></i> Tolak Pengajuan</h4>
+      </div>
+      <form method="post" action="/pimpinan/pengajuan/tolak">
+      <div class="modal-body">
+          @csrf
+          <div class="form-group">
+              <label>Alasan Menolak</label>
+              <textarea class="form-control" name="ket_kepala_skpd" rows="4"></textarea>
+              <input type="hidden" name="tolak_id" id="tolak_id">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-grey pull-left" data-dismiss="modal"><i class="fa fa-sign-out"></i> Close</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+      </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-terima">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="ion ion-clipboard"></i> Terima Pengajuan</h4>
+      </div>
+      <form method="post" action="/pimpinan/pengajuan/terima">
+      <div class="modal-body">
+          @csrf
+          <div class="form-group">
+              <label>Keterangan</label>
+              <textarea class="form-control" name="ket_kepala_skpd" rows="4"></textarea>
+              <input type="hidden" name="terima_id" id="terima_id">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn bg-grey pull-left" data-dismiss="modal"><i class="fa fa-sign-out"></i> Close</button>
+        <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Simpan</button>
+      </div>
+      </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
 @endsection
 @push('js')
-
+<script>
+  $(document).on('click', '.kadis-menolak', function() { 
+    $('#tolak_id').val($(this).data('id'));
+  $("#modal-tolak").modal();
+});
+</script>
+<script>
+  $(document).on('click', '.kadis-menerima', function() {
+    $('#terima_id').val($(this).data('id'));
+  $("#modal-terima").modal();
+});
+</script>
 <!-- Select2 -->
 <script src="/assets/bower_components/select2/dist/js/select2.full.min.js"></script>
 
