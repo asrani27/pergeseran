@@ -59,7 +59,7 @@
             <div class="col-xs-12">
                 <div class="form-group">
                 <label>Kalimat pengantar</label>
-                <textarea rows="4" class="form-control"  value="{{$data->pengantar}}" readonly></textarea>
+                <textarea rows="4" class="form-control"  value="{{$data->pengantar}}" readonly>{{$data->pengantar}}</textarea>
                 </div>
             </div>
             <div class="col-xs-12">
@@ -72,7 +72,9 @@
                 <div class="form-group">
                 <label>Program</label>
                   <select class="form-control select2" style="width: 100%;" disabled>
-                    <option selected="">{{$data->program}}</option>
+                    @foreach ($program as $item)
+                    <option value="{{$item->id}}" {{$item->id == $data->id ? 'selected':''}}>{{$item->kode}} - {{$item->nama}}</option>
+                    @endforeach
                   </select>
                 </div>
             </div>
@@ -80,7 +82,9 @@
                 <div class="form-group">
                 <label>Kegiatan</label>
                   <select class="form-control select2" style="width: 100%;" disabled name="kegiatan">
-                    <option selected="">{{$data->kegiatan}}</option>
+                    @foreach ($kegiatan as $item)
+                    <option value="{{$item->id}}" {{$item->id == $data->id ? 'selected':''}}>{{$item->kode}} - {{$item->nama}}</option>
+                    @endforeach
                   </select>
                 </div>
             </div>
@@ -88,7 +92,9 @@
                 <div class="form-group">
                 <label>Sub Kegiatan</label>
                   <select class="form-control select2" style="width: 100%;" disabled name="subkegiatan">
-                    <option selected="">{{$data->subkegiatan}}</option>
+                    @foreach ($subkegiatan as $item)
+                    <option value="{{$item->id}}" {{$item->id == $data->id ? 'selected':''}}>{{$item->kode}} - {{$item->nama}}</option>
+                    @endforeach
                   </select>
                 </div>
             </div>
@@ -118,7 +124,9 @@
                               <div class="form-group">
                               <label>Rekening Awal</label>
                               <select class="form-control select2" style="width: 100%;" disabled name="sebelum_a">
-                                <option selected="">{{$data->detail->first()->sebelum_a}}</option>
+                                @foreach ($rekening as $item)
+                                <option value="{{$item->id}}" {{$item->id == $data->detail->first()->sebelum_a ? 'selected':''}}>{{$item->kode}} - {{$item->nama}}</option>
+                                @endforeach
                               </select>
                               </div>
                           </div>
@@ -139,7 +147,9 @@
                               <div class="form-group">
                               <label>Standar Satuan Harga</label>
                               <select class="form-control select2" style="width: 100%;" disabled name="sebelum_d">
-                                <option selected="">{{$data->detail->first()->sebelum_d}}</option>
+                                @foreach ($ssh as $item)
+                                <option value="{{$item->id}}" {{$item->id == $data->detail->first()->sebelum_d ? 'selected':''}}>{{$item->kode}} - {{$item->uraian}} - Rp. {{$item->harga}}</option>
+                                @endforeach
                               </select>
                               </div>
                           </div>
@@ -173,7 +183,9 @@
                               <div class="form-group">
                               <label>Diganti Menjadi</label>
                               <select class="form-control select2" style="width: 100%;" disabled  name="setelah_a">
-                                <option selected="">{{$data->detail->first()->setelah_a}}</option>
+                                @foreach ($rekening as $item)
+                                <option value="{{$item->id}}" {{$item->id == $data->detail->first()->setelah_a ? 'selected':''}}>{{$item->kode}} - {{$item->nama}}</option>
+                                @endforeach
                               </select>
                               </div>
                           </div>
@@ -194,7 +206,9 @@
                               <div class="form-group">
                               <label>Standar Satuan Harga</label>
                               <select class="form-control select2" style="width: 100%;" disabled name="setelah_d">
-                                <option selected="">{{$data->detail->first()->setelah_d}}</option>
+                                @foreach ($ssh as $item)
+                                <option value="{{$item->id}}" {{$item->id == $data->detail->first()->setelah_d ? 'selected':''}}>{{$item->kode}} - {{$item->uraian}} - Rp. {{$item->harga}}</option>
+                                @endforeach
                               </select>
                               </div>
                           </div>

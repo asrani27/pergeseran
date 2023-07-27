@@ -35,7 +35,7 @@
             <div class="col-xs-12">
                 <div class="form-group">
                 <label>Dari</label>
-                <input type="text" class="form-control" value="{{Auth::user()->kepala->nama}}" readonly>
+                <input type="text" class="form-control" value="{{$data->skpd->nama}}" readonly>
                 </div>
             </div>
             <div class="col-xs-12">
@@ -224,8 +224,8 @@
           <!-- /.box-body -->
 
           <div class="box-footer text-center">
-            <button type="submit" class="btn btn-danger"  onclick="return confirm('Yakin pengajuan ini di tolak?');"> <i class="fa fa-times"></i>  Tolak Pengajuan</button>
-            <a href="/pimpinan/pengajuan/1/terima" class="btn btn-primary" onclick="return confirm('Yakin pengajuan ini di terima?');"> <i class="fa fa-send"></i>  Terima Pengajuan</a>
+            <a href="/bpkpad/pengajuan/{{$data->id}}/tolak" class="btn btn-danger" onclick="return confirm('Yakin pengajuan ini di tolak?');"> <i class="fa fa-times"></i>  Tolak Pengajuan</a>
+            <a href="/bpkpad/pengajuan/{{$data->id}}/terima" class="btn btn-primary" onclick="return confirm('Yakin pengajuan ini di terima?');"> <i class="fa fa-send"></i>  Terima Pengajuan</a>
           </div>
         </form>
       </div>

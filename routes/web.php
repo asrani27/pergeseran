@@ -79,6 +79,7 @@ Route::group(['middleware' => ['auth', 'role:kadis']], function () {
     Route::prefix('pimpinan')->group(function () {
         Route::get('beranda', [KadisController::class, 'index']);
         Route::get('pengajuan/{id}', [KadisController::class, 'pengajuan']);
+        Route::get('pengajuan/{id}/detail', [KadisController::class, 'detail']);
         Route::get('pengajuan/{id}/terima', [KadisController::class, 'terima']);
         Route::get('pengajuan/{id}/tolak', [KadisController::class, 'tolak']);
     });

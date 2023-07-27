@@ -69,18 +69,18 @@
                   @if ($item->status_kepala_skpd == 0)
                   <a href="/pimpinan/pengajuan/{{$item->id}}" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
                   @elseif ($item->status_kepala_skpd == 1)
-                  <a href="#"utton class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                  <a href="/pimpinan/pengajuan/{{$item->id}}/detail" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
                   @elseif ($item->status_kepala_skpd == 2)
-                  <a href="#"utton class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
+                  <a href="/pimpinan/pengajuan/{{$item->id}}/detail" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
                   @endif
                 </td>
                 <td class="text-center">
                   @if($item->status_kepala_skpd == 1 && $item->status_operator == 1)
-                  <a href="#"utton class="btn btn-xs btn-primary"><i class="fa fa-hourglass"></i></a>
+                  <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-hourglass"></i></a>
                   @elseif($item->status_bpkpad == 0)
                   <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
                   @else
-                  <a href="#"utton class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                  <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
                   @endif
                 </td>
               </tr>

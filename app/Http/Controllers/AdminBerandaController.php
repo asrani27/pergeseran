@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Models\SSH;
+use App\Models\Program;
+use App\Models\Kegiatan;
+use App\Models\Rekening;
 use App\Models\Pengajuan;
+use App\Models\Subkegiatan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -19,7 +24,13 @@ class AdminBerandaController extends Controller
     public function detail($id)
     {
         $data = Pengajuan::find($id);
-        return view('admin.detail', compact('data'));
+
+        $program = Program::where('skpd_id', Auth::user()->skpd->id)->get();
+        $kegiatan = Kegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
+        $subkegiatan = Subkegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
+        $rekening = Rekening::where('skpd_id', Auth::user()->skpd->id)->get();
+        $ssh = SSH::get();
+        return view('admin.detail', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh'));
     }
 
     //     public function duplikatData()

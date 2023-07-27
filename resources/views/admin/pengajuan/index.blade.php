@@ -75,8 +75,10 @@
                 <div class="form-group">
                 <label>Program</label>
                   <select class="form-control select2" style="width: 100%;" required name="program">
-                    <option selected="">Pilih Program</option>
-                    <option value="a">Program A</option>
+                    <option value="" selected>Pilih Program</option>
+                    @foreach ($program as $item)
+                    <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
+                    @endforeach
                   </select>
                 </div>
             </div>
@@ -84,8 +86,10 @@
                 <div class="form-group">
                 <label>Kegiatan</label>
                   <select class="form-control select2" style="width: 100%;" required name="kegiatan">
-                    <option selected="">Pilih Kegiatan</option>
-                    <option value="a">Kegiatan A</option>
+                    <option value="" selected>Pilih Kegiatan</option>
+                    @foreach ($kegiatan as $item)
+                    <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
+                    @endforeach
                   </select>
                 </div>
             </div>
@@ -93,8 +97,10 @@
                 <div class="form-group">
                 <label>Sub Kegiatan</label>
                   <select class="form-control select2" style="width: 100%;" required name="subkegiatan">
-                    <option selected="">Pilih Subkegiatan</option>
-                    <option value="a">Subkegiatan A</option>
+                    <option value="" selected>Pilih SubKegiatan</option>
+                    @foreach ($subkegiatan as $item)
+                    <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
+                    @endforeach
                   </select>
                 </div>
             </div>
@@ -124,8 +130,10 @@
                               <div class="form-group">
                               <label>Rekening Awal</label>
                               <select class="form-control select2" style="width: 100%;" required name="sebelum_a">
-                                <option selected="">Pilih Rekening</option>
-                                <option value="a">Rekening B</option>
+                                <option value="" selected>Rekening Awal</option>
+                                @foreach ($rekening as $item)
+                                <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
+                                @endforeach
                               </select>
                               </div>
                           </div>
@@ -147,7 +155,9 @@
                               <label>Standar Satuan Harga</label>
                               <select class="form-control select2" style="width: 100%;" required name="sebelum_d">
                                 <option selected="">Pilih Standar Satuan Harga</option>
-                                <option value="a">Harga B</option>
+                                @foreach ($ssh as $item)
+                                <option value="{{$item->id}}">{{$item->uraian}} - {{$item->spesifikasi}}</option>
+                                @endforeach
                               </select>
                               </div>
                           </div>
@@ -181,8 +191,10 @@
                               <div class="form-group">
                               <label>Diganti Menjadi</label>
                               <select class="form-control select2" style="width: 100%;" required  name="setelah_a">
-                                <option selected="">Pilih Rekening</option>
-                                <option value="a">Rekening A</option>
+                                <option value="" selected>Rekening Awal</option>
+                                @foreach ($rekening as $item)
+                                <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
+                                @endforeach
                               </select>
                               </div>
                           </div>
@@ -204,7 +216,9 @@
                               <label>Standar Satuan Harga</label>
                               <select class="form-control select2" style="width: 100%;" required name="setelah_d">
                                 <option selected="">Pilih Standar Satuan Harga</option>
-                                <option value="a">Harga A</option>
+                                @foreach ($ssh as $item)
+                                <option value="{{$item->id}}">{{$item->uraian}} - {{$item->spesifikasi}}</option>
+                                @endforeach
                               </select>
                               </div>
                           </div>

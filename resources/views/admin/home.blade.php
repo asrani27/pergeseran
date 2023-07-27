@@ -67,14 +67,14 @@
                   @if ($item->status_kepala_skpd == 0)
                   <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
                   @else
-                  <a href="#"utton class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                  <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
                   @endif
                 </td>
                 <td class="text-center">
                   @if ($item->status_bpkpad == 0)
                   <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
                   @else
-                  <a href="#"utton class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                  <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
                   @endif
                 </td>
               </tr>

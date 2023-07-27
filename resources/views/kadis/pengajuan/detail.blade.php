@@ -7,9 +7,8 @@
 @section('content')
 <section class="content">
   <div class="row text-center">
-    <h1><strong>DETAIL PENGAJUAN</strong></h1>
+    <h1><strong>DETAIL PENGAJUAN PERGESERAN</strong></h1>
   </div>
-  
   
   <div class="row">
     <!-- left column -->
@@ -18,24 +17,25 @@
       <div class="box">
         <!-- /.box-header -->
         <!-- form start -->
+        <form role="form" method="post" action="/pimpinan/pengajuan/1">
+            @csrf
           <div class="box-body">
             <div class="col-xs-6">
-                <div class="form-group">
-                <label>No Surat</label>
-                <input type="text" class="form-control" placeholder="no surat" value="{{$data->nomor_surat}}" readonly>
-                </div>
+              <div class="form-group">
+              <label>No Surat</label>
+              <input type="text" class="form-control" placeholder="no surat" readonly value="{{$data->nomor_surat}}">
+              </div>
             </div>
             <div class="col-xs-6">
                 <div class="form-group">
                 <label>Tanggal</label>
-                <input type="date" class="form-control" name="tanggal" value="{{$data->tanggal}}">
+                <input type="date" class="form-control" name="tanggal" readonly value="{{$data->tanggal}}">
                 </div>
             </div>
             <div class="col-xs-12">
                 <div class="form-group">
                 <label>Dari</label>
-                <input type="text" class="form-control" value="{{Auth::user()->skpd->nama}}" readonly>
-                <input type="hidden" name="skpd_id" class="form-control" value="{{Auth::user()->skpd->id}}" readonly>
+                <input type="text" class="form-control" value="{{Auth::user()->kepala->nama}}" readonly>
                 </div>
             </div>
             <div class="col-xs-12">
@@ -59,7 +59,7 @@
             <div class="col-xs-12">
                 <div class="form-group">
                 <label>Kalimat pengantar</label>
-                <textarea rows="4" class="form-control"  readonly>{{$data->pengantar}}</textarea>
+                <textarea rows="4" class="form-control"  value="{{$data->pengantar}}" readonly>{{$data->pengantar}}</textarea>
                 </div>
             </div>
             <div class="col-xs-12">
@@ -82,7 +82,6 @@
                 <div class="form-group">
                 <label>Kegiatan</label>
                   <select class="form-control select2" style="width: 100%;" disabled name="kegiatan">
-                    
                     @foreach ($kegiatan as $item)
                     <option value="{{$item->id}}" {{$item->id == $data->id ? 'selected':''}}>{{$item->kode}} - {{$item->nama}}</option>
                     @endforeach
@@ -125,7 +124,6 @@
                               <div class="form-group">
                               <label>Rekening Awal</label>
                               <select class="form-control select2" style="width: 100%;" disabled name="sebelum_a">
-
                                 @foreach ($rekening as $item)
                                 <option value="{{$item->id}}" {{$item->id == $data->detail->first()->sebelum_a ? 'selected':''}}>{{$item->kode}} - {{$item->nama}}</option>
                                 @endforeach
@@ -149,7 +147,6 @@
                               <div class="form-group">
                               <label>Standar Satuan Harga</label>
                               <select class="form-control select2" style="width: 100%;" disabled name="sebelum_d">
-
                                 @foreach ($ssh as $item)
                                 <option value="{{$item->id}}" {{$item->id == $data->detail->first()->sebelum_d ? 'selected':''}}>{{$item->kode}} - {{$item->uraian}} - Rp. {{$item->harga}}</option>
                                 @endforeach
@@ -209,7 +206,6 @@
                               <div class="form-group">
                               <label>Standar Satuan Harga</label>
                               <select class="form-control select2" style="width: 100%;" disabled name="setelah_d">
-
                                 @foreach ($ssh as $item)
                                 <option value="{{$item->id}}" {{$item->id == $data->detail->first()->setelah_d ? 'selected':''}}>{{$item->kode}} - {{$item->uraian}} - Rp. {{$item->harga}}</option>
                                 @endforeach
@@ -239,6 +235,11 @@
               <!-- /.box -->
             </div>
           </div>
+          <!-- /.box-body -->
+
+          <div class="box-footer text-center">
+          </div>
+        </form>
       </div>
       
   </div>

@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Program;
+use App\Models\Kegiatan;
+use App\Models\Rekening;
 use App\Models\Pengajuan;
+use App\Models\Subkegiatan;
 use Illuminate\Http\Request;
 use App\Models\PerubahanRekening;
+use App\Models\SSH;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -12,7 +17,12 @@ class PengajuanController extends Controller
 {
     public function index()
     {
-        return view('admin.pengajuan.index');
+        $program = Program::where('skpd_id', Auth::user()->skpd->id)->get();
+        $kegiatan = Kegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
+        $subkegiatan = Subkegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
+        $rekening = Rekening::where('skpd_id', Auth::user()->skpd->id)->get();
+        $ssh = SSH::get();
+        return view('admin.pengajuan.index', compact('program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh'));
     }
 
     public function store(Request $req)
@@ -26,9 +36,9 @@ class PengajuanController extends Controller
         $n->hal = $req->hal;
         $n->pengantar = $req->pengantar;
         $n->lampiran = $req->lampiran;
-        $n->program = $req->program;
-        $n->kegiatan = $req->kegiatan;
-        $n->subkegiatan = $req->subkegiatan;
+        $n->program_id = $req->program;
+        $n->kegiatan_id = $req->kegiatan;
+        $n->subkegiatan_id = $req->subkegiatan;
         $n->save();
 
         //save detail perubahan rekening
