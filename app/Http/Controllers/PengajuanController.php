@@ -24,7 +24,14 @@ class PengajuanController extends Controller
         $ssh = SSH::get();
         return view('admin.pengajuan.index', compact('program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh'));
     }
+    public function search()
+    {
+        $search = request()->get('search');
+        $data = Pengajuan::where('skpd_id', Auth::user()->skpd->id)->where('nomor_surat', 'LIKE', '%' . $search . '%')->orderBy('id', 'DESC')->paginate(15);
+        request()->flash();
 
+        return view('kadis.home', compact('data'));
+    }
     public function store(Request $req)
     {
         $n = new Pengajuan;
@@ -39,6 +46,8 @@ class PengajuanController extends Controller
         $n->program_id = $req->program;
         $n->kegiatan_id = $req->kegiatan;
         $n->subkegiatan_id = $req->subkegiatan;
+        $n->status_operator = 2;
+        $n->status_kepala_skpd = 1;
         $n->save();
 
         //save detail perubahan rekening

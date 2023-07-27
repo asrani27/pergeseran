@@ -57,25 +57,50 @@
                   {{$item->nomor_surat}}
                 </td>
                 <td class="text-center">
-                  @if ($item->status_operator == 0)
-                  <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
-                  @else
-                  <a href="/admin/beranda/detail/{{$item->id}}" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
-                  @endif
+                  @switch($item->status_operator)
+                      @case(1)
+                          
+                      <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-hourglass"></i></a>
+                          @break
+                      @case(2)
+                          
+                      <a href="/admin/beranda/detail/{{$item->id}}" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                          @break
+                      @default
+                          
+                      <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
+                  @endswitch
                 </td>
                 <td class="text-center">
-                  @if ($item->status_kepala_skpd == 0)
-                  <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
-                  @else
-                  <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
-                  @endif
+                  @switch($item->status_kepala_skpd)
+                      @case(1)
+                          
+                      <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-hourglass"></i></a>
+                          @break
+                      @case(2)
+                          
+                      <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                          @break
+                      @default
+                          
+                      <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
+                  @endswitch
                 </td>
                 <td class="text-center">
-                  @if ($item->status_bpkpad == 0)
-                  <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
-                  @else
-                  <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
-                  @endif
+
+                  @switch($item->status_bpkpad)
+                      @case(1)
+                          
+                      <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-hourglass"></i></a>
+                          @break
+                      @case(2)
+                          
+                      <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                          @break
+                      @default
+                          
+                      <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
+                  @endswitch
                 </td>
               </tr>
               @endforeach

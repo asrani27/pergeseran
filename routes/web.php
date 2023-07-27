@@ -88,7 +88,11 @@ Route::group(['middleware' => ['auth', 'role:kadis']], function () {
 Route::group(['middleware' => ['auth', 'role:bpkpad']], function () {
     Route::prefix('bpkpad')->group(function () {
         Route::get('beranda', [BpkpadController::class, 'index']);
+        Route::get('beranda/filter', [BpkpadController::class, 'search']);
         Route::get('pengajuan/{id}', [BpkpadController::class, 'pengajuan']);
+        Route::get('pengajuan/{id}/detail', [BpkpadController::class, 'detail']);
+        Route::get('pengajuan/{id}/terima', [BpkpadController::class, 'terima']);
+        Route::get('pengajuan/{id}/tolak', [BpkpadController::class, 'tolak']);
     });
 });
 

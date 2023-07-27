@@ -238,8 +238,6 @@
           <!-- /.box-body -->
 
           <div class="box-footer text-center">
-            <a href="/bpkpad/pengajuan/{{$data->id}}/tolak" class="btn btn-danger" onclick="return confirm('Yakin pengajuan ini di tolak?');"> <i class="fa fa-times"></i>  Tolak Pengajuan</a>
-            <a href="/bpkpad/pengajuan/{{$data->id}}/terima" class="btn btn-primary" onclick="return confirm('Yakin pengajuan ini di terima?');"> <i class="fa fa-send"></i>  Terima Pengajuan</a>
           </div>
         </form>
       </div>

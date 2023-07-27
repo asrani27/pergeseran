@@ -40,10 +40,19 @@ class KadisController extends Controller
         $ssh = SSH::get();
         return view('kadis.pengajuan.detail', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh'));
     }
+    public function search()
+    {
+        $search = request()->get('search');
+        $data = Pengajuan::where('skpd_id', Auth::user()->kepala->id)->where('nomor_surat', 'LIKE', '%' . $search . '%')->orderBy('id', 'DESC')->paginate(15);
+        request()->flash();
+
+        return view('kadis.home', compact('data'));
+    }
     public function terima($id)
     {
         $data = Pengajuan::find($id)->update([
-            'status_kepala_skpd' => 1
+            'status_kepala_skpd' => 2,
+            'status_bpkpad' => 1
         ]);
 
         Session::flash('success', 'Pengajuan Diterima');
@@ -52,7 +61,7 @@ class KadisController extends Controller
     public function tolak($id)
     {
         $data = Pengajuan::find($id)->update([
-            'status_kepala_skpd' => 2
+            'status_kepala_skpd' => 3
         ]);
         Session::flash('warning', 'Pengajuan Ditolak');
         return redirect('/pimpinan/beranda');

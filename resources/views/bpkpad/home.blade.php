@@ -17,14 +17,15 @@
         <div class="box-body table-responsive">
           <table class="table table-hover">
             <tbody>
-              
-            <div class="col-xs-12">
-              <div class="form-group">
-              <label>Masukkan No Surat</label>
-              <input type="text" class="form-control" placeholder="no surat">
-              </div>
-            </div>
-            
+              <form method="get" action="/bpkpad/beranda/filter">
+                @csrf
+                <div class="col-xs-12">
+                  <div class="form-group">
+                  <label>Masukkan No Surat</label>
+                  <input type="text" class="form-control" name="search" value="{{old('search')}}" placeholder="no surat">
+                  </div>
+                </div>
+              </form>
             </tbody>
           </table>
         </div>
@@ -63,29 +64,50 @@
                   {{$item->skpd->nama}}
                 </td>
                 <td class="text-center">
-                  @if ($item->status_operator == 0)
-                  <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
-                  @else
-                  <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
-                  @endif
+                  @switch($item->status_operator)
+                      @case(1)
+                          
+                      <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-hourglass"></i></a>
+                          @break
+                      @case(2)
+                          
+                      <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                          @break
+                      @default
+                          
+                      <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
+                  @endswitch
                 </td>
                 <td class="text-center">
-                  @if ($item->status_kepala_skpd == 0)
-                  <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
-                  @elseif ($item->status_kepala_skpd == 1)
-                  <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
-                  @elseif ($item->status_kepala_skpd == 2)
-                  <a href="#" class="btn btn-xs btn-danger"><i class="fa fa-times"></i></a>
-                  @endif
+                  @switch($item->status_kepala_skpd)
+                      @case(1)
+                          
+                      <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-hourglass"></i></a>
+                          @break
+                      @case(2)
+                          
+                      <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                          @break
+                      @default
+                          
+                      <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
+                  @endswitch
                 </td>
                 <td class="text-center">
-                  @if($item->status_kepala_skpd == 1 && $item->status_operator == 1)
-                  <a href="/bpkpad/pengajuan/{{$item->id}}" class="btn btn-xs btn-primary"><i class="fa fa-hourglass"></i></a>
-                  @elseif($item->status_bpkpad == 0)
-                  <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
-                  @else
-                  <a href="#" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
-                  @endif
+
+                  @switch($item->status_bpkpad)
+                      @case(1)
+                          
+                      <a href="/bpkpad/pengajuan/{{$item->id}}" class="btn btn-xs btn-primary"><i class="fa fa-hourglass"></i></a>
+                          @break
+                      @case(2)
+                          
+                      <a href="/bpkpad/pengajuan/{{$item->id}}/detail" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
+                          @break
+                      @default
+                          
+                      <a href="#" class="btn btn-xs bg-gray"><i class="fa fa-hourglass"></i></a>
+                  @endswitch
                 </td>
               </tr>
               @endforeach
