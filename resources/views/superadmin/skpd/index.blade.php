@@ -6,6 +6,8 @@
 <div class="row">
     <div class="col-md-12">
         
+      <a href="/superadmin/skpd/upload" class="btn btn-sm btn-primary"><i
+        class="fa fa-key"></i> Upload Data Kegiatan</a><br/><br/>
         <div class="box box-success">
           <div class="box-header">
             <i class="fa fa-institution"></i><h3 class="box-title">Data SKPD</h3>

@@ -69,6 +69,18 @@
     </div>
     <!-- ./col -->
 </div>
+
+<div class="row">
+  <div class="col-lg-3 col-xs-6">
+    <a href="/superadmin/tarikssh" class="btn btn-primary btn-block">Tarik SSH <i class="fa fa-refresh"></i></a>
+  </div>
+  <div class="col-lg-3 col-xs-6">
+  </div>
+  <div class="col-lg-3 col-xs-6">
+  </div>
+  <div class="col-lg-3 col-xs-6">
+  </div>
+</div>
 @endsection
 @push('js')
 

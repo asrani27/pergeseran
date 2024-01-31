@@ -125,8 +125,8 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body" style="">
-                          
-                          <div class="col-xs-6">
+                          <a href="#" class="btn btn-primary btn-xs"> <i class="fa fa-plus"></i>  Tambah</a>
+                          {{-- <div class="col-xs-6">
                               <div class="form-group">
                               <label>Rekening Awal</label>
                               <select class="form-control select2" style="width: 100%;" required name="sebelum_a">
@@ -163,8 +163,8 @@
                           </div>
                           <div class="col-xs-2">
                               <div class="form-group">
-                              <label>Jumlah</label>
-                              <input type="text" class="form-control" placeholder="jumlah" required name="sebelum_e">
+                              <label>Satuan</label>
+                              <input type="text" class="form-control" placeholder="satuan" required name="sebelum_e">
                               </div>
                           </div>
                           <div class="col-xs-4">
@@ -172,7 +172,7 @@
                               <label>Nominal Standar Satuan Harga</label>
                               <input type="text" class="form-control" readonly name="sebelum_f">
                               </div>
-                          </div>
+                          </div> --}}
                         </div>
                         <!-- /.box-body -->
                       </div>
@@ -187,7 +187,8 @@
                         <!-- /.box-header -->
                         <div class="box-body" style="">
                           
-                          <div class="col-xs-6">
+                          <a href="#" class="btn btn-primary btn-xs"> <i class="fa fa-plus"></i>  Tambah</a>
+                          {{-- <div class="col-xs-6">
                               <div class="form-group">
                               <label>Diganti Menjadi</label>
                               <select class="form-control select2" style="width: 100%;" required  name="setelah_a">
@@ -224,8 +225,8 @@
                           </div>
                           <div class="col-xs-2">
                               <div class="form-group">
-                              <label>Jumlah</label>
-                              <input type="text" class="form-control" placeholder="jumlah" required name="setelah_e">
+                              <label>Satuan</label>
+                              <input type="text" class="form-control" placeholder="satuan" required name="setelah_e">
                               </div>
                           </div>
                           <div class="col-xs-4">
@@ -233,7 +234,7 @@
                               <label>Nominal Standar Satuan Harga</label>
                               <input type="text" class="form-control" readonly name="setelah_f">
                               </div>
-                          </div>
+                          </div> --}}
                         </div>
                         <!-- /.box-body -->
                       </div>

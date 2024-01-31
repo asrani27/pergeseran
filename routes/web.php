@@ -57,7 +57,10 @@ Route::get('lupa-password', [LupaPasswordController::class, 'index']);
 Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::prefix('superadmin')->group(function () {
         Route::get('beranda', [SuperadminBerandaController::class, 'index']);
+        Route::get('tarikssh', [SuperadminBerandaController::class, 'tarikSSH']);
         Route::get('skpd', [SuperadminSkpdController::class, 'index']);
+        Route::get('skpd/upload', [SuperadminSkpdController::class, 'upload']);
+        Route::post('skpd/upload', [SuperadminSkpdController::class, 'storeUpload']);
         Route::get('skpd/createakun/{id}', [SuperadminSkpdController::class, 'createakun']);
         Route::get('skpd/resetakun/{id}', [SuperadminSkpdController::class, 'resetakun']);
         Route::get('skpd/kepala/createakun/{id}', [SuperadminSkpdController::class, 'createakunkepala']);
