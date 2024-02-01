@@ -98,11 +98,12 @@
                   </select>
                 </div>
             </div>
+            
             <div class="col-xs-12">
               <div class="box box-primary box-solid">
                 <div class="box-header with-border">
                   <h3 class="box-title">Perubahan Rekening</h3>
-    
+
                   <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                     </button>
@@ -120,53 +121,52 @@
                         <!-- /.box-header -->
                         <div class="box-body" style="">
                           
-                          <div class="col-xs-6">
-                              <div class="form-group">
-                              <label>Rekening Awal</label>
-                              <select class="form-control select2" style="width: 100%;" disabled name="sebelum_a">
-                                @foreach ($rekening as $item)
-                                <option value="{{$item->id}}" {{$item->id == $data->detail->first()->sebelum_a ? 'selected':''}}>{{$item->kode}} - {{$item->nama}}</option>
-                                @endforeach
-                              </select>
-                              </div>
-                          </div>
-                          <div class="col-xs-2">
-                              <div class="form-group">
-                              <label>Jumlah</label>
-                              <input type="text" class="form-control" placeholder="jumlah" disabled value="{{$data->detail->first()->sebelum_b}}">
-                              </div>
-                          </div>
-                          <div class="col-xs-4">
-                              <div class="form-group">
-                              <label>Nominal Rekening Awal</label>
-                              <input type="text" class="form-control" placeholder="nominal" readonly value="{{$data->detail->first()->sebelum_c}}">
-                              </div>
-                          </div>
+    
+                  <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modal-default">
+                    Tambah
+                   </button><br/>
+                          <table class="table table-condensed">
+                            <tr style="background-color: aquamarine">
+                              <th>No</th>
+                              <th>Rekening Awal</th>
+                              <th>Jumlah</th>
+                              <th>Nominal</th>
+                            </tr>
+                            @foreach ($sebelum as $key => $item)
+                            <tr>
+                              <td>{{$key+1}}</td>
+                              <td>{{$item->rekawal}}</td>
+                              <td>{{$item->jumlah}}</td>
+                              <td>{{$item->nominal}}
+                                <a href="/admin/beranda/rekawal/{{$item->id}}" class="btn btn-xs btn-primary" onclick="return confirm(' Yakin ingin di hapus?');">
+                                  Hapus
+                                </a>
+                              </td>
+                            </tr>
+                            @endforeach
+
+
+                            <tr style="background-color: aquamarine">
+                              <th>No</th>
+                              <th>SSH</th>
+                              <th>Satuan</th>
+                              <th>Nominal</th>
+                            </tr>
+                            @foreach ($sebelum as $key => $item)
+                          <tr>
+                            <td>{{$key+1}}</td>
+                            <td>{{$item->ssh}}</td>
+                            <td>{{$item->satuan}}</td>
+                            <td>{{number_format($item->nominalssh)}}</td>
+                          </tr>
+                          @endforeach
+                          </table>
                           
-                          <div class="col-xs-6">
-                              <div class="form-group">
-                              <label>Standar Satuan Harga</label>
-                              <select class="form-control select2" style="width: 100%;" disabled name="sebelum_d">
-                                @foreach ($ssh as $item)
-                                <option value="{{$item->id}}" {{$item->id == $data->detail->first()->sebelum_d ? 'selected':''}}>{{$item->kode}} - {{$item->uraian}} - Rp. {{$item->harga}}</option>
-                                @endforeach
-                              </select>
-                              </div>
-                          </div>
-                          <div class="col-xs-2">
-                              <div class="form-group">
-                              <label>Jumlah</label>
-                              <input type="text" class="form-control" disabled value="{{$data->detail->first()->sebelum_e}}">
-                              </div>
-                          </div>
-                          <div class="col-xs-4">
-                              <div class="form-group">
-                              <label>Nominal Standar Satuan Harga</label>
-                              <input type="text" class="form-control" readonly value="{{$data->detail->first()->sebelum_f}}">
-                              </div>
-                          </div>
                         </div>
                         <!-- /.box-body -->
+                        <div class="box-footer with-border">
+                        Total : {{number_format($sebelum->sum('total'))}}
+                        </div>
                       </div>
                       <!-- /.box -->
                     </div>
@@ -178,54 +178,52 @@
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body" style="">
-                          
-                          <div class="col-xs-6">
-                              <div class="form-group">
-                              <label>Diganti Menjadi</label>
-                              <select class="form-control select2" style="width: 100%;" disabled  name="setelah_a">
-                                @foreach ($rekening as $item)
-                                <option value="{{$item->id}}" {{$item->id == $data->detail->first()->setelah_a ? 'selected':''}}>{{$item->kode}} - {{$item->nama}}</option>
-                                @endforeach
-                              </select>
-                              </div>
-                          </div>
-                          <div class="col-xs-2">
-                              <div class="form-group">
-                              <label>Jumlah</label>
-                              <input type="text" class="form-control" placeholder="jumlah" disabled value="{{$data->detail->first()->setelah_b}}">
-                              </div>
-                          </div>
-                          <div class="col-xs-4">
-                              <div class="form-group">
-                              <label>Nominal Rekening Akhir</label>
-                              <input type="text" class="form-control" placeholder="nominal" readonly value="{{$data->detail->first()->setelah_c}}">
-                              </div>
-                          </div>
-                          
-                          <div class="col-xs-6">
-                              <div class="form-group">
-                              <label>Standar Satuan Harga</label>
-                              <select class="form-control select2" style="width: 100%;" disabled name="setelah_d">
-                                @foreach ($ssh as $item)
-                                <option value="{{$item->id}}" {{$item->id == $data->detail->first()->setelah_d ? 'selected':''}}>{{$item->kode}} - {{$item->uraian}} - Rp. {{$item->harga}}</option>
-                                @endforeach
-                              </select>
-                              </div>
-                          </div>
-                          <div class="col-xs-2">
-                              <div class="form-group">
-                              <label>Jumlah</label>
-                              <input type="text" class="form-control" placeholder="jumlah" disabled value="{{$data->detail->first()->setelah_e}}">
-                              </div>
-                          </div>
-                          <div class="col-xs-4">
-                              <div class="form-group">
-                              <label>Nominal Standar Satuan Harga</label>
-                              <input type="text" class="form-control" readonly value="{{$data->detail->first()->setelah_f}}">
-                              </div>
-                          </div>
+
+    
+                  <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modal-default2">
+                    Tambah
+                   </button><br/>
+                   <table class="table table-condensed">
+                     <tr style="background-color: aquamarine">
+                       <th>No</th>
+                       <th>Rekening Awal</th>
+                       <th>Jumlah</th>
+                       <th>Nominal</th>
+                     </tr>
+                     @foreach ($sesudah as $key => $item)
+                     <tr>
+                       <td>{{$key+1}}</td>
+                       <td>{{$item->rekawal}}</td>
+                       <td>{{$item->jumlah}}</td>
+                       <td>{{$item->nominal}}
+                         <a href="/admin/beranda/rekawal/{{$item->id}}" class="btn btn-xs btn-primary" onclick="return confirm(' Yakin ingin di hapus?');">
+                           Hapus
+                         </a>
+                       </td>
+                     </tr>
+                     @endforeach
+
+
+                     <tr style="background-color: aquamarine">
+                       <th>No</th>
+                       <th>SSH</th>
+                       <th>Satuan</th>
+                       <th>Nominal</th>
+                     </tr>
+                     @foreach ($sesudah as $key => $item)
+                   <tr>
+                     <td>{{$key+1}}</td>
+                     <td>{{$item->ssh}}</td>
+                     <td>{{$item->satuan}}</td>
+                     <td>{{number_format($item->nominalssh)}}</td>
+                   </tr>
+                   @endforeach
+                   </table>
                         </div>
                         <!-- /.box-body -->
+                        <div class="box-footer with-border">
+                        Total : {{number_format($sesudah->sum('total'))}}
+                        </div>
                       </div>
                       <!-- /.box -->
                     </div>

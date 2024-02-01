@@ -183,31 +183,47 @@
                   <button type="button" class="btn btn-xs btn-primary" data-toggle="modal" data-target="#modal-default2">
                     Tambah
                    </button><br/>
-                          <table class="table table-condensed">
+                   <table class="table table-condensed">
+                     <tr style="background-color: aquamarine">
+                       <th>No</th>
+                       <th>Rekening Awal</th>
+                       <th>Jumlah</th>
+                       <th>Nominal</th>
+                     </tr>
+                     @foreach ($sesudah as $key => $item)
+                     <tr>
+                       <td>{{$key+1}}</td>
+                       <td>{{$item->rekawal}}</td>
+                       <td>{{$item->jumlah}}</td>
+                       <td>{{$item->nominal}}
+                         <a href="/admin/beranda/rekawal/{{$item->id}}" class="btn btn-xs btn-primary" onclick="return confirm(' Yakin ingin di hapus?');">
+                           Hapus
+                         </a>
+                       </td>
+                     </tr>
+                     @endforeach
 
-                          <tr>
-                            <th>Menjadi</th>
-                            <th>Jumlah</th>
-                            <th>Nominal</th>
-                          </tr>
-                          <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                          </tr>
-                          <tr>
-                            <th>SSH</th>
-                            <th>Satuan</th>
-                            <th>Nominal</th>
-                          </tr>
-                          <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                          </tr>
-                          </table>
+
+                     <tr style="background-color: aquamarine">
+                       <th>No</th>
+                       <th>SSH</th>
+                       <th>Satuan</th>
+                       <th>Nominal</th>
+                     </tr>
+                     @foreach ($sesudah as $key => $item)
+                   <tr>
+                     <td>{{$key+1}}</td>
+                     <td>{{$item->ssh}}</td>
+                     <td>{{$item->satuan}}</td>
+                     <td>{{number_format($item->nominalssh)}}</td>
+                   </tr>
+                   @endforeach
+                   </table>
                         </div>
                         <!-- /.box-body -->
+                        <div class="box-footer with-border">
+                        Total : {{number_format($sesudah->sum('total'))}}
+                        </div>
                       </div>
                       <!-- /.box -->
                     </div>
@@ -273,6 +289,57 @@
   <!-- /.modal-dialog -->
 </div>
 
+<div class="modal fade" id="modal-default2">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Menjadi </h4>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="/admin/beranda/detail/{{$data->id}}/sesudah">
+          @csrf
+          <div class="col-xs-9">
+              <div class="form-group">
+              <label>Dirubah Menjadi</label>
+              <select id="rekeningawal" class="form-control select2" style="width: 100%;" required name="rekawal">
+                <option value="" selected>-pilih-</option>
+                @foreach ($rekening as $item)
+                <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
+                @endforeach
+              </select>
+              </div>
+          </div>
+          <div class="col-xs-3">
+              <div class="form-group">
+              <label>Jumlah</label>
+              <input type="text" class="form-control" placeholder="jumlah" required name="jumlah">
+              </div>
+          </div>
+          
+          <div class="col-xs-12">
+              <div class="form-group">
+              <label>Standar Satuan Harga</label>
+              <select class="form-control select2" style="width: 100%;" required name="ssh">
+                <option selected="">Pilih Standar Satuan Harga</option>
+                @foreach ($ssh as $item)
+                <option value="{{$item->id}}">{{$item->kode}} - {{$item->uraian}} - {{number_format($item->harga)}}</option>
+                @endforeach
+              </select>
+              </div>
+          </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Keluar</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
+          </div>
+        </form>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
 @endsection
 @push('js')
 

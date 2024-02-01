@@ -47,6 +47,24 @@ class AdminBerandaController extends Controller
         return back();
     }
 
+    public function storeSesudah(Request $req, $id)
+    {
+        $rek = Rekening::find($req->rekawal);
+
+        $ssh = SSH::find($req->ssh);
+        $s = new Sesudah;
+        $s->pengajuan_id = $id;
+        $s->rekawal = $rek->kode . ' ' . $rek->nama;
+        $s->jumlah = $req->jumlah;
+        $s->nominal = 'nominal';
+        $s->ssh = $ssh->uraian;
+        $s->satuan = $ssh->satuan;
+        $s->nominalssh = $ssh->harga;
+        $s->save();
+        Session::flash('success', 'Berhasil disimpan');
+        return back();
+    }
+
     public function detail($id)
     {
         $data = Pengajuan::find($id);
@@ -62,7 +80,10 @@ class AdminBerandaController extends Controller
             return $item;
         });
 
-        $sesudah = Sesudah::where('pengajuan_id', $id)->get();
+        $sesudah = Sesudah::where('pengajuan_id', $id)->get()->map(function ($item) {
+            $item->total = $item->jumlah * $item->nominalssh;
+            return $item;
+        });
         return view('admin.detail', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh', 'sebelum', 'sesudah'));
     }
 

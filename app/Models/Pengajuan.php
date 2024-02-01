@@ -16,6 +16,16 @@ class Pengajuan extends Model
         return $this->hasMany(PerubahanRekening::class, 'pengajuan_id');
     }
 
+    public function sebelum()
+    {
+        return $this->hasMany(Sebelum::class, 'pengajuan_id');
+    }
+
+    public function sesudah()
+    {
+        return $this->hasMany(Sesudah::class, 'pengajuan_id');
+    }
+
     public function skpd()
     {
         return $this->belongsTo(Skpd::class, 'skpd_id');

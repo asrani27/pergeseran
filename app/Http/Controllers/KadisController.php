@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\SSH;
 use App\Models\Program;
+use App\Models\Sebelum;
+use App\Models\Sesudah;
 use App\Models\Kegiatan;
 use App\Models\Rekening;
 use App\Models\Pengajuan;
@@ -27,7 +29,16 @@ class KadisController extends Controller
         $subkegiatan = Subkegiatan::where('skpd_id', Auth::user()->kepala->id)->get();
         $rekening = Rekening::where('skpd_id', Auth::user()->kepala->id)->get();
         $ssh = SSH::get();
-        return view('kadis.pengajuan.index', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh'));
+        $sebelum = Sebelum::where('pengajuan_id', $id)->get()->map(function ($item) {
+            $item->total = $item->jumlah * $item->nominalssh;
+            return $item;
+        });
+
+        $sesudah = Sesudah::where('pengajuan_id', $id)->get()->map(function ($item) {
+            $item->total = $item->jumlah * $item->nominalssh;
+            return $item;
+        });
+        return view('kadis.pengajuan.index', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh', 'sebelum', 'sesudah'));
     }
 
     public function detail($id)
@@ -38,7 +49,16 @@ class KadisController extends Controller
         $subkegiatan = Subkegiatan::where('skpd_id', Auth::user()->kepala->id)->get();
         $rekening = Rekening::where('skpd_id', Auth::user()->kepala->id)->get();
         $ssh = SSH::get();
-        return view('kadis.pengajuan.detail', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh'));
+        $sebelum = Sebelum::where('pengajuan_id', $id)->get()->map(function ($item) {
+            $item->total = $item->jumlah * $item->nominalssh;
+            return $item;
+        });
+
+        $sesudah = Sesudah::where('pengajuan_id', $id)->get()->map(function ($item) {
+            $item->total = $item->jumlah * $item->nominalssh;
+            return $item;
+        });
+        return view('kadis.pengajuan.detail', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh', 'sebelum', 'sesudah'));
     }
     public function search()
     {
@@ -68,14 +88,29 @@ class KadisController extends Controller
     }
     public function simpanTerima(Request $req)
     {
-        $data = Pengajuan::find($req->terima_id)->update([
-            'status_kepala_skpd' => 2,
-            'status_bpkpad' => 1,
-            'ket_kepala_skpd' => $req->ket_kepala_skpd
-        ]);
+        $sebelum = Pengajuan::find($req->terima_id)->sebelum->map(function ($item) {
+            $item->total = $item->jumlah * $item->nominalssh;
+            return $item;
+        })->sum('total');
+        $sesudah = Pengajuan::find($req->terima_id)->sesudah->map(function ($item) {
+            $item->total = $item->jumlah * $item->nominalssh;
+            return $item;
+        })->sum('total');
+        if ($sebelum != $sesudah) {
 
-        Session::flash('success', 'Pengajuan Diterima');
-        return redirect('/pimpinan/beranda');
+            Session::flash('warning', 'Total Sebelum harus sama dengan total sesudah');
+            return back();
+        } else {
+
+            $data = Pengajuan::find($req->terima_id)->update([
+                'status_kepala_skpd' => 2,
+                'status_bpkpad' => 1,
+                'ket_kepala_skpd' => $req->ket_kepala_skpd
+            ]);
+
+            Session::flash('success', 'Pengajuan Diterima');
+            return redirect('/pimpinan/beranda');
+        }
     }
     public function simpanTolak(Request $req)
     {
