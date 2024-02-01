@@ -28,6 +28,7 @@ class SuperadminBerandaController extends Controller
             if ($check == null) {
                 $s = new SSH;
                 $s->kode = $item->kode_barang;
+                $s->uraian = $item->nama_barang;
                 $s->harga = $item->harga;
                 $s->satuan = $item->satuan;
                 $s->save();

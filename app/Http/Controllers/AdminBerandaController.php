@@ -27,6 +27,7 @@ class AdminBerandaController extends Controller
     {
         $ssh = SSH::find($req->ssh);
         $s = new Sebelum;
+        $s->pengajuan_id = $id;
         $s->rekawal = $req->rekawal;
         $s->jumlah = $req->jumlah;
         $s->nominal = 'nominal';
