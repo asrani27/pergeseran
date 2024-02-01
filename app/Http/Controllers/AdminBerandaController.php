@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use App\Models\SSH;
 use App\Models\Program;
 use App\Models\Sebelum;
+use App\Models\Sesudah;
 use App\Models\Kegiatan;
 use App\Models\Rekening;
 use App\Models\Pengajuan;
@@ -16,7 +17,12 @@ use Illuminate\Support\Facades\Session;
 
 class AdminBerandaController extends Controller
 {
-
+    public function deleteRekawal($id)
+    {
+        Sebelum::find($id)->delete();
+        Session::flash('success', 'Berhasil dihapus');
+        return back();
+    }
     public function index()
     {
         $data = Pengajuan::where('skpd_id', Auth::user()->skpd->id)->orderBy('id', 'DESC')->paginate(15);
@@ -25,16 +31,18 @@ class AdminBerandaController extends Controller
 
     public function storeSebelum(Request $req, $id)
     {
+        $rek = Rekening::find($req->rekawal)
         $ssh = SSH::find($req->ssh);
         $s = new Sebelum;
         $s->pengajuan_id = $id;
-        $s->rekawal = $req->rekawal;
+        $s->rekawal = $req->kode . ' '. $req->nama;
         $s->jumlah = $req->jumlah;
         $s->nominal = 'nominal';
         $s->ssh = $ssh->uraian;
         $s->satuan = $ssh->satuan;
         $s->nominalssh = $ssh->harga;
         $s->save();
+        Session::flash('success', 'Berhasil disimpan');
         return back();
     }
 
@@ -47,7 +55,14 @@ class AdminBerandaController extends Controller
         $subkegiatan = Subkegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
         $rekening = Rekening::where('skpd_id', Auth::user()->skpd->id)->where('subkegiatan_id', $id)->get();
         $ssh = SSH::get();
-        return view('admin.detail', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh'));
+
+        $sebelum = Sebelum::where('pengajuan_id', $id)->get()->map(function ($item) {
+            $item->total = $item->jumlah * $item->nominalssh;
+            return $item;
+        });
+
+        $sesudah = Sesudah::where('pengajuan_id', $id)->get();
+        return view('admin.detail', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh', 'sebelum', 'sesudah'));
     }
 
     //     public function duplikatData()

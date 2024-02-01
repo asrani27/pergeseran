@@ -126,30 +126,47 @@
                     Tambah
                    </button><br/>
                           <table class="table table-condensed">
+                            <tr style="background-color: aquamarine">
+                              <th>No</th>
+                              <th>Rekening Awal</th>
+                              <th>Jumlah</th>
+                              <th>Nominal</th>
+                            </tr>
+                            @foreach ($sebelum as $key => $item)
+                            <tr>
+                              <td>{{$key+1}}</td>
+                              <td>{{$item->rekawal}}</td>
+                              <td>{{$item->jumlah}}</td>
+                              <td>{{$item->nominal}}
+                                <a href="/admin/beranda/rekawal/{{$item->id}}" class="btn btn-xs btn-primary" onclick="return confirm(' Yakin ingin di hapus?');">
+                                  Hapus
+                                </a>
+                              </td>
+                            </tr>
+                            @endforeach
+
+
+                            <tr style="background-color: aquamarine">
+                              <th>No</th>
+                              <th>SSH</th>
+                              <th>Satuan</th>
+                              <th>Nominal</th>
+                            </tr>
+                            @foreach ($sebelum as $key => $item)
                           <tr>
-                            <th>Rekening Awal</th>
-                            <th>Jumlah</th>
-                            <th>Nominal</th>
+                            <td>{{$key+1}}</td>
+                            <td>{{$item->ssh}}</td>
+                            <td>{{$item->satuan}}</td>
+                            <td>{{number_format($item->nominalssh)}}</td>
                           </tr>
-                          <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                          </tr>
-                          <tr>
-                            <th>SSH</th>
-                            <th>Satuan</th>
-                            <th>Nominal</th>
-                          </tr>
-                          <tr>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                          </tr>
+                          @endforeach
                           </table>
                           
                         </div>
                         <!-- /.box-body -->
+                        <div class="box-footer with-border">
+                        Total : {{number_format($sebelum->sum('total'))}}
+                        </div>
                       </div>
                       <!-- /.box -->
                     </div>
