@@ -31,11 +31,12 @@ class AdminBerandaController extends Controller
 
     public function storeSebelum(Request $req, $id)
     {
-        $rek = Rekening::find($req->rekawal)
+        $rek = Rekening::find($req->rekawal);
+
         $ssh = SSH::find($req->ssh);
         $s = new Sebelum;
         $s->pengajuan_id = $id;
-        $s->rekawal = $req->kode . ' '. $req->nama;
+        $s->rekawal = $rek->kode . ' ' . $rek->nama;
         $s->jumlah = $req->jumlah;
         $s->nominal = 'nominal';
         $s->ssh = $ssh->uraian;
