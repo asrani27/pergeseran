@@ -53,6 +53,8 @@ Route::get('/', function () {
 Route::get('login', [LoginController::class, 'index'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::get('lupa-password', [LupaPasswordController::class, 'index']);
+Route::get('kegiatan/{id}', [SuperadminBerandaController::class, 'kegiatanJson']);
+Route::get('subkegiatan/{id}', [SuperadminBerandaController::class, 'subkegiatanJson']);
 
 Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::prefix('superadmin')->group(function () {
@@ -72,6 +74,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::prefix('admin')->group(function () {
         Route::get('beranda', [AdminBerandaController::class, 'index']);
         Route::get('beranda/detail/{id}', [AdminBerandaController::class, 'detail']);
+        Route::post('beranda/detail/{id}/sebelum', [AdminBerandaController::class, 'storeSebelum']);
         Route::get('pengajuan', [PengajuanController::class, 'index']);
         Route::post('pengajuan/create', [PengajuanController::class, 'store']);
         Route::get('gantipass', [GantiPasswordController::class, 'admin']);

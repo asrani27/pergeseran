@@ -74,7 +74,7 @@
             <div class="col-xs-12">
                 <div class="form-group">
                 <label>Program</label>
-                  <select class="form-control select2" style="width: 100%;" required name="program">
+                  <select id="program" class="form-control select2" style="width: 100%;" required name="program">
                     <option value="" selected>Pilih Program</option>
                     @foreach ($program as $item)
                     <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
@@ -85,7 +85,7 @@
             <div class="col-xs-12">
                 <div class="form-group">
                 <label>Kegiatan</label>
-                  <select class="form-control select2" style="width: 100%;" required name="kegiatan">
+                  <select id="kegiatan" class="form-control select2" style="width: 100%;" required name="kegiatan">
                     <option value="" selected>Pilih Kegiatan</option>
                     @foreach ($kegiatan as $item)
                     <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
@@ -96,7 +96,7 @@
             <div class="col-xs-12">
                 <div class="form-group">
                 <label>Sub Kegiatan</label>
-                  <select class="form-control select2" style="width: 100%;" required name="subkegiatan">
+                  <select id="subkegiatan" class="form-control select2" style="width: 100%;" required name="subkegiatan">
                     <option value="" selected>Pilih SubKegiatan</option>
                     @foreach ($subkegiatan as $item)
                     <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
@@ -104,152 +104,12 @@
                   </select>
                 </div>
             </div>
-            <div class="col-xs-12">
-              <div class="box box-primary box-solid">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Perubahan Rekening</h3>
-    
-                  <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                  </div>
-                  <!-- /.box-tools -->
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body" style="">
-                    <div class="col-xs-12">
-                      <div class="box box-info box-solid">
-                        <div class="box-header with-border">
-                          <h3 class="box-title">Sebelum Dirubah</h3>
-                          <!-- /.box-tools -->
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body" style="">
-                          <a href="#" class="btn btn-primary btn-xs"> <i class="fa fa-plus"></i>  Tambah</a>
-                          {{-- <div class="col-xs-6">
-                              <div class="form-group">
-                              <label>Rekening Awal</label>
-                              <select class="form-control select2" style="width: 100%;" required name="sebelum_a">
-                                <option value="" selected>Rekening Awal</option>
-                                @foreach ($rekening as $item)
-                                <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
-                                @endforeach
-                              </select>
-                              </div>
-                          </div>
-                          <div class="col-xs-2">
-                              <div class="form-group">
-                              <label>Jumlah</label>
-                              <input type="text" class="form-control" placeholder="jumlah" required name="sebelum_b">
-                              </div>
-                          </div>
-                          <div class="col-xs-4">
-                              <div class="form-group">
-                              <label>Nominal Rekening Awal</label>
-                              <input type="text" class="form-control" placeholder="nominal" readonly name="sebelum_c">
-                              </div>
-                          </div>
-                          
-                          <div class="col-xs-6">
-                              <div class="form-group">
-                              <label>Standar Satuan Harga</label>
-                              <select class="form-control select2" style="width: 100%;" required name="sebelum_d">
-                                <option selected="">Pilih Standar Satuan Harga</option>
-                                @foreach ($ssh as $item)
-                                <option value="{{$item->id}}">{{$item->uraian}} - {{$item->spesifikasi}}</option>
-                                @endforeach
-                              </select>
-                              </div>
-                          </div>
-                          <div class="col-xs-2">
-                              <div class="form-group">
-                              <label>Satuan</label>
-                              <input type="text" class="form-control" placeholder="satuan" required name="sebelum_e">
-                              </div>
-                          </div>
-                          <div class="col-xs-4">
-                              <div class="form-group">
-                              <label>Nominal Standar Satuan Harga</label>
-                              <input type="text" class="form-control" readonly name="sebelum_f">
-                              </div>
-                          </div> --}}
-                        </div>
-                        <!-- /.box-body -->
-                      </div>
-                      <!-- /.box -->
-                    </div>
-                    <div class="col-xs-12">
-                      <div class="box box-info box-solid">
-                        <div class="box-header with-border">
-                          <h3 class="box-title">Setelah Dirubah</h3>
-                          <!-- /.box-tools -->
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body" style="">
-                          
-                          <a href="#" class="btn btn-primary btn-xs"> <i class="fa fa-plus"></i>  Tambah</a>
-                          {{-- <div class="col-xs-6">
-                              <div class="form-group">
-                              <label>Diganti Menjadi</label>
-                              <select class="form-control select2" style="width: 100%;" required  name="setelah_a">
-                                <option value="" selected>Rekening Awal</option>
-                                @foreach ($rekening as $item)
-                                <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
-                                @endforeach
-                              </select>
-                              </div>
-                          </div>
-                          <div class="col-xs-2">
-                              <div class="form-group">
-                              <label>Jumlah</label>
-                              <input type="text" class="form-control" placeholder="jumlah" required name="setelah_b">
-                              </div>
-                          </div>
-                          <div class="col-xs-4">
-                              <div class="form-group">
-                              <label>Nominal Rekening Akhir</label>
-                              <input type="text" class="form-control" placeholder="nominal" readonly name="setelah_c">
-                              </div>
-                          </div>
-                          
-                          <div class="col-xs-6">
-                              <div class="form-group">
-                              <label>Standar Satuan Harga</label>
-                              <select class="form-control select2" style="width: 100%;" required name="setelah_d">
-                                <option selected="">Pilih Standar Satuan Harga</option>
-                                @foreach ($ssh as $item)
-                                <option value="{{$item->id}}">{{$item->uraian}} - {{$item->spesifikasi}}</option>
-                                @endforeach
-                              </select>
-                              </div>
-                          </div>
-                          <div class="col-xs-2">
-                              <div class="form-group">
-                              <label>Satuan</label>
-                              <input type="text" class="form-control" placeholder="satuan" required name="setelah_e">
-                              </div>
-                          </div>
-                          <div class="col-xs-4">
-                              <div class="form-group">
-                              <label>Nominal Standar Satuan Harga</label>
-                              <input type="text" class="form-control" readonly name="setelah_f">
-                              </div>
-                          </div> --}}
-                        </div>
-                        <!-- /.box-body -->
-                      </div>
-                      <!-- /.box -->
-                    </div>
-                </div>
-                <!-- /.box-body -->
-              </div>
-              <!-- /.box -->
-            </div>
+            
           </div>
           <!-- /.box-body -->
 
           <div class="box-footer text-center">
-            <button type="submit" class="btn btn-primary"> <i class="fa fa-send"></i>  Kirim</button>
+            <button type="submit" class="btn btn-primary btn-block"> <i class="fa fa-send"></i>  Kirim</button>
           </div>
         </form>
       </div>
@@ -257,7 +117,54 @@
   </div>
 </section>
 
-
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Sebelum </h4>
+      </div>
+      <div class="modal-body">
+      <div class="col-xs-9">
+          <div class="form-group">
+          <label>Rekening Awal</label>
+          <select id="rekeningawal" class="form-control select2" style="width: 100%;" required name="sebelum_a">
+            <option value="" selected>Rekening Awal</option>
+            @foreach ($rekening as $item)
+            <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
+            @endforeach
+          </select>
+          </div>
+      </div>
+      <div class="col-xs-3">
+          <div class="form-group">
+          <label>Jumlah</label>
+          <input type="text" class="form-control" placeholder="jumlah" required name="sebelum_b">
+          </div>
+      </div>
+      
+      <div class="col-xs-12">
+          <div class="form-group">
+          <label>Standar Satuan Harga</label>
+          <select class="form-control select2" style="width: 100%;" required name="sebelum_d">
+            <option selected="">Pilih Standar Satuan Harga</option>
+            @foreach ($ssh as $item)
+            <option value="{{$item->id}}">{{$item->kode}} - {{$item->uraian}} - {{$item->spesifikasi}}</option>
+            @endforeach
+          </select>
+          </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
 @endsection
 @push('js')
 
@@ -269,5 +176,48 @@
     //Initialize Select2 Elements
     $('.select2').select2()
   })
+</script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+$(document).ready(function(){
+
+
+  $("#program").change(function(){
+  var id_program = $("#program").val(); 
+  console.log(id_program);
+  axios({
+    method: 'get',
+    url: '/kegiatan/'+id_program,
+  })
+  .then(function (response) {
+    console.log(response.data.length);
+    $("#kegiatan").html('');
+    $("#subkegiatan").html('');
+    for (var i = 0; i < response.data.length; i++) 
+    {
+      $("#kegiatan").append('<option value="' + response.data[i].id + '">' + response.data[i].kode +' '+ response.data[i].nama +  '</option>');
+    }
+    });
+  })
+
+  $("#kegiatan").change(function(){
+  var id_kegiatan = $("#kegiatan").val(); 
+  console.log(id_kegiatan);
+  axios({
+    method: 'get',
+    url: '/subkegiatan/'+id_kegiatan,
+  })
+  .then(function (response) {
+    console.log(response.data.length);
+    $("#subkegiatan").html('');
+    for (var i = 0; i < response.data.length; i++) 
+    {
+      $("#subkegiatan").append('<option value="' + response.data[i].id + '">' + response.data[i].kode +' '+ response.data[i].nama +  '</option>');
+    }
+    });
+  })
+
+})
 </script>
 @endpush

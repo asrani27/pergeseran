@@ -51,23 +51,23 @@ class PengajuanController extends Controller
         $n->save();
 
         //save detail perubahan rekening
-        $p = new PerubahanRekening;
-        $p->pengajuan_id = $n->id;
-        $p->sebelum_a = $req->sebelum_a;
-        $p->sebelum_b = $req->sebelum_b;
-        $p->sebelum_c = $req->sebelum_c;
-        $p->sebelum_d = $req->sebelum_d;
-        $p->sebelum_e = $req->sebelum_e;
-        $p->sebelum_f = $req->sebelum_f;
-        $p->setelah_a = $req->setelah_a;
-        $p->setelah_b = $req->setelah_b;
-        $p->setelah_c = $req->setelah_c;
-        $p->setelah_d = $req->setelah_d;
-        $p->setelah_e = $req->setelah_e;
-        $p->setelah_f = $req->setelah_f;
-        $p->save();
+        // $p = new PerubahanRekening;
+        // $p->pengajuan_id = $n->id;
+        // $p->sebelum_a = $req->sebelum_a;
+        // $p->sebelum_b = $req->sebelum_b;
+        // $p->sebelum_c = $req->sebelum_c;
+        // $p->sebelum_d = $req->sebelum_d;
+        // $p->sebelum_e = $req->sebelum_e;
+        // $p->sebelum_f = $req->sebelum_f;
+        // $p->setelah_a = $req->setelah_a;
+        // $p->setelah_b = $req->setelah_b;
+        // $p->setelah_c = $req->setelah_c;
+        // $p->setelah_d = $req->setelah_d;
+        // $p->setelah_e = $req->setelah_e;
+        // $p->setelah_f = $req->setelah_f;
+        // $p->save();
 
-        Session::flash('success', 'Berhasil Di ajukan');
-        return redirect('/admin/beranda');
+        Session::flash('success', 'Berhasil Di simpan');
+        return back();
     }
 }

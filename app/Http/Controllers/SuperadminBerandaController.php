@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\SSH;
 use GuzzleHttp\Client;
+use App\Models\Kegiatan;
+use App\Models\Subkegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -33,5 +35,16 @@ class SuperadminBerandaController extends Controller
         }
         Session::flash('success', 'Berhasil Ditarik');
         return redirect('superadmin/beranda');
+    }
+
+    public function kegiatanJson($id)
+    {
+        $data = Kegiatan::where('program_id', $id)->get();
+        return response()->json($data);
+    }
+    public function subkegiatanJson($id)
+    {
+        $data = Subkegiatan::where('kegiatan_id', $id)->get();
+        return response()->json($data);
     }
 }

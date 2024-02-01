@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\SSH;
 use App\Models\Program;
+use App\Models\Sebelum;
 use App\Models\Kegiatan;
 use App\Models\Rekening;
 use App\Models\Pengajuan;
 use App\Models\Subkegiatan;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -21,6 +23,20 @@ class AdminBerandaController extends Controller
         return view('admin.home', compact('data'));
     }
 
+    public function storeSebelum(Request $req, $id)
+    {
+        $ssh = SSH::find($req->ssh);
+        $s = new Sebelum;
+        $s->rekawal = $req->rekawal;
+        $s->jumlah = $req->jumlah;
+        $s->nominal = 'nominal';
+        $s->ssh = $ssh->uraian;
+        $s->satuan = $ssh->satuan;
+        $s->nominalssh = $ssh->harga;
+        $s->save();
+        return back();
+    }
+
     public function detail($id)
     {
         $data = Pengajuan::find($id);
@@ -28,7 +44,7 @@ class AdminBerandaController extends Controller
         $program = Program::where('skpd_id', Auth::user()->skpd->id)->get();
         $kegiatan = Kegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
         $subkegiatan = Subkegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
-        $rekening = Rekening::where('skpd_id', Auth::user()->skpd->id)->get();
+        $rekening = Rekening::where('skpd_id', Auth::user()->skpd->id)->where('subkegiatan_id', $id)->get();
         $ssh = SSH::get();
         return view('admin.detail', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh'));
     }
