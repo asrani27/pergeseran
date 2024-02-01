@@ -196,7 +196,7 @@
                        <td>{{$item->rekawal}}</td>
                        <td>{{$item->jumlah}}</td>
                        <td>{{$item->nominal}}
-                         <a href="/admin/beranda/rekawal/{{$item->id}}" class="btn btn-xs btn-primary" onclick="return confirm(' Yakin ingin di hapus?');">
+                         <a href="/admin/beranda/menjadi/{{$item->id}}" class="btn btn-xs btn-primary" onclick="return confirm(' Yakin ingin di hapus?');">
                            Hapus
                          </a>
                        </td>

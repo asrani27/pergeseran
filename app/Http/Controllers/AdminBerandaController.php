@@ -23,6 +23,12 @@ class AdminBerandaController extends Controller
         Session::flash('success', 'Berhasil dihapus');
         return back();
     }
+    public function deleteMenjadi($id)
+    {
+        Sesudah::find($id)->delete();
+        Session::flash('success', 'Berhasil dihapus');
+        return back();
+    }
     public function index()
     {
         $data = Pengajuan::where('skpd_id', Auth::user()->skpd->id)->orderBy('id', 'DESC')->paginate(15);
