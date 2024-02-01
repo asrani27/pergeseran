@@ -227,11 +227,18 @@
                       </div>
                       <!-- /.box -->
                     </div>
+                
+                
+                    <div class="col-xs-12 text-center">
+                    <a href="/admin/beranda/detail/{{$data->id}}/update" class="btn btn-primary"> <i class="fa fa-send"></i> Update</a>
+                    </div>
                 </div>
                 <!-- /.box-body -->
               </div>
               <!-- /.box -->
             </div>
+
+
           </div>
       </div>
       

@@ -68,6 +68,6 @@ class PengajuanController extends Controller
         // $p->save();
 
         Session::flash('success', 'Berhasil Di simpan');
-        return back();
+        return redirect('/admin/beranda');
     }
 }

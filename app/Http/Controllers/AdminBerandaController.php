@@ -29,6 +29,26 @@ class AdminBerandaController extends Controller
         return view('admin.home', compact('data'));
     }
 
+    public function update($id)
+    {
+
+        $sebelum = Sebelum::where('pengajuan_id', $id)->get()->map(function ($item) {
+            $item->total = $item->jumlah * $item->nominalssh;
+            return $item;
+        })->sum('total');
+
+        $sesudah = Sesudah::where('pengajuan_id', $id)->get()->map(function ($item) {
+            $item->total = $item->jumlah * $item->nominalssh;
+            return $item;
+        })->sum('total');
+        if ($sebelum != $sesudah) {
+            Session::flash('warning', 'Total sebelum tidak sama dengan total sesudah');
+            return back();
+        } else {
+            Session::flash('success', 'Berhasil Di update');
+            return back();
+        }
+    }
     public function storeSebelum(Request $req, $id)
     {
         $rek = Rekening::find($req->rekawal);
