@@ -65,7 +65,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     font-family: 'digital-7', sans-serif;
       font-size: 20px;
       bottom:50px;
-      background-color: #008080;
+      background-color: red;
       border: 2px solid #213120;
   }
   
