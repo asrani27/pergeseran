@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\SSH;
+use App\Models\Timer;
 use GuzzleHttp\Client;
 use App\Models\Kegiatan;
+use App\Models\Setting;
 use App\Models\Subkegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -13,9 +15,27 @@ class SuperadminBerandaController extends Controller
 {
     public function index()
     {
-        return view('superadmin.home');
+        $timer = Setting::first();
+        $running_text = Setting::first()->running_text;
+        return view('superadmin.home', compact('timer', 'running_text'));
     }
 
+    public function updateTimer(Request $req)
+    {
+        Setting::first()->update([
+            'waktu' => $req->waktu,
+        ]);
+        Session::flash('success', 'Berhasil diupdate');
+        return back();
+    }
+    public function updateRunningText(Request $req)
+    {
+        Setting::first()->update([
+            'running_text' => $req->running_text,
+        ]);
+        Session::flash('success', 'Berhasil diupdate');
+        return back();
+    }
     public function tarikSSH()
     {
         $api_url    = 'https://standar-harga.banjarmasinkota.go.id/api/get-ssh';

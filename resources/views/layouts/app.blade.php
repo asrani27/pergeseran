@@ -25,7 +25,60 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <link rel="stylesheet" href="/notif/dist/css/iziToast.min.css">
 <script src="/notif/dist/js/iziToast.min.js" type="text/javascript"></script>
 </head>
-
+<style>
+  .btn-floating {
+      position: fixed;
+      right: 50%;
+      left: 50%;
+      overflow: hidden;
+      width: 150px;
+      height: 50px;
+      /* border-radius: 10px; */
+      border: 0;
+      z-index: 9999;
+      color: white;
+      transition: .2s;
+  }
+  
+  /* .btn-floating:hover {
+      width: auto;
+      padding: 0 20px;
+      cursor: pointer;
+  }
+   */
+  .btn-floating span {
+      font-size: 250px;
+      transition: .2s;
+      line-height: 0px;
+      display: none;
+  }
+  
+  /* .btn-floating:hover span {
+      display: inline-block;
+  }
+  
+  .btn-floating:hover img {
+      margin-bottom: -3px;
+  }
+   */
+  .btn-floating.whatsapp {
+    font-family: 'digital-7', sans-serif;
+      font-size: 16px;
+      bottom:888px;
+      background-color: #008080;
+      border: 2px solid #213120;
+  }
+  
+  .btn-floating.whatsapp:hover {
+      background-color: #1f7a12;
+  }
+  #running-text{
+    background-color: yellow;
+    color: red;
+    font-weight: bold;
+  }
+</style>
+<div id="running-text"><marquee>{{runningText()}}</marquee></div>
 <body class="hold-transition skin-blue-light sidebar-mini" style="background-color: #008080">
 <div class="wrapper">
 
@@ -163,7 +216,37 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="/assets/dist/js/adminlte.min.js"></script>
 <script>
 @include('layouts.notif')
+var tanggal = {!!json_encode(batasWaktu())!!}
+var countDownDate = new Date(tanggal+" 23:59:59").getTime();
+var x = setInterval(function() {
+// Get today's date and time
+var now = new Date().getTime();
+// Find the distance between now and the count down date
+var distance = countDownDate - now;
+// Time calculations for days, hours, minutes and seconds
+var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+// Display the result in the element with id="demo"
+document.getElementById("timer").innerHTML = days + " hari  " + hours + ":"
++ minutes + ":" + seconds + "";
+
+// If the count down is finished, write some text
+if (distance < 0) {
+  clearInterval(x);
+  document.getElementById("demo").innerHTML = "EXPIRED";
+}
+}, 1000);
+console.log(tanggal,countDownDate);
 </script>
 @stack('js')
+
+  <button class="btn-floating whatsapp">
+      <div id="timer">
+        timer
+      </div>
+  </button>
+  
 </body>
 </html>

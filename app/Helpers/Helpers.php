@@ -1,8 +1,20 @@
 <?php
 
+use Carbon\Carbon;
+use App\Models\Timer;
 use App\Models\JenisRfk;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 
+function batasWaktu()
+{
+    $tanggal = Setting::first()->waktu;
+    return Carbon::parse($tanggal)->format('M d, Y');
+}
+function runningText()
+{
+    return Setting::first()->running_text;
+}
 function statusRFK()
 {
     if (Auth::user()->hasRole('admin')) {

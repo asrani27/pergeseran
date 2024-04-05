@@ -41,10 +41,11 @@ use App\Http\Controllers\BidangRealisasiController;
 use App\Http\Controllers\BidangLaporanRFKController;
 use App\Http\Controllers\BidangPergeseranController;
 use App\Http\Controllers\BidangSubkegiatanController;
+use App\Http\Controllers\KunciRekeningController;
+use App\Http\Controllers\SSHController;
 use App\Http\Controllers\SuperadminBerandaController;
 use App\Http\Controllers\SuperadminJenisrfkController;
-
-
+use App\Http\Controllers\TimerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,10 +56,24 @@ Route::post('login', [LoginController::class, 'login']);
 Route::get('lupa-password', [LupaPasswordController::class, 'index']);
 Route::get('kegiatan/{id}', [SuperadminBerandaController::class, 'kegiatanJson']);
 Route::get('subkegiatan/{id}', [SuperadminBerandaController::class, 'subkegiatanJson']);
+Route::get('timer', [TimerController::class, 'timer']);
 
 Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::prefix('superadmin')->group(function () {
+
         Route::get('beranda', [SuperadminBerandaController::class, 'index']);
+        Route::get('kunci_rekening', [KunciRekeningController::class, 'index']);
+        Route::get('kunci_rekening/add', [KunciRekeningController::class, 'add']);
+        Route::post('kunci_rekening/add', [KunciRekeningController::class, 'store']);
+        Route::get('kunci_rekening/edit/{id}', [KunciRekeningController::class, 'edit']);
+        Route::post('kunci_rekening/edit/{id}', [KunciRekeningController::class, 'update']);
+        Route::get('kunci_rekening/delete/{id}', [KunciRekeningController::class, 'delete']);
+        Route::get('ssh', [SSHController::class, 'index']);
+        Route::get('ssh/upload', [SSHController::class, 'upload']);
+        Route::post('ssh/upload', [SSHController::class, 'storeUpload']);
+        Route::get('ssh/search', [SSHController::class, 'search']);
+        Route::post('updatetimer', [SuperadminBerandaController::class, 'updateTimer']);
+        Route::post('updaterunningtext', [SuperadminBerandaController::class, 'updateRunningText']);
         Route::get('tarikssh', [SuperadminBerandaController::class, 'tarikSSH']);
         Route::get('skpd', [SuperadminSkpdController::class, 'index']);
         Route::get('skpd/upload', [SuperadminSkpdController::class, 'upload']);

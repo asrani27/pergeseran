@@ -230,7 +230,7 @@
                 
                 
                     <div class="col-xs-12 text-center">
-                    <a href="/admin/beranda/detail/{{$data->id}}/update" class="btn btn-primary"> <i class="fa fa-send"></i> Update</a>
+                    <a href="/admin/beranda/detail/{{$data->id}}/update" class="btn btn-primary"> <i class="fa fa-send"></i> Kirim</a>
                     </div>
                 </div>
                 <!-- /.box-body -->
@@ -245,7 +245,7 @@
   </div>
 </section>
 <div class="modal fade" id="modal-default">
-  <div class="modal-dialog">
+  <div class="modal-dialog " style="margin-top:15%">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -297,7 +297,7 @@
 </div>
 
 <div class="modal fade" id="modal-default2">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="margin-top:15%">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -312,7 +312,7 @@
               <label>Dirubah Menjadi</label>
               <select id="rekeningawal" class="form-control select2" style="width: 100%;" required name="rekawal">
                 <option value="" selected>-pilih-</option>
-                @foreach ($rekening as $item)
+                @foreach ($rekening_menjadi as $item)
                 <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
                 @endforeach
               </select>

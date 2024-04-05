@@ -60,7 +60,7 @@
                   @switch($item->status_operator)
                       @case(1)
                           
-                      <a href="#" class="btn btn-xs btn-primary"><i class="fa fa-hourglass"></i></a>
+                      <a href="/admin/beranda/detail/{{$item->id}}" class="btn btn-xs btn-primary"><i class="fa fa-hourglass"></i></a>
                           @break
                       @case(2)
                           

@@ -37,7 +37,6 @@ class AdminBerandaController extends Controller
 
     public function update($id)
     {
-
         $sebelum = Sebelum::where('pengajuan_id', $id)->get()->map(function ($item) {
             $item->total = $item->jumlah * $item->nominalssh;
             return $item;
@@ -51,6 +50,10 @@ class AdminBerandaController extends Controller
             Session::flash('warning', 'Total sebelum tidak sama dengan total sesudah');
             return back();
         } else {
+            Pengajuan::find($id)->update([
+                'status_operator' => 2,
+                'status_kepala_skpd' => 1,
+            ]);
             Session::flash('success', 'Berhasil Di update');
             return back();
         }
@@ -99,6 +102,7 @@ class AdminBerandaController extends Controller
         $kegiatan = Kegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
         $subkegiatan = Subkegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
         $rekening = Rekening::where('skpd_id', Auth::user()->skpd->id)->where('subkegiatan_id', $id)->get();
+        $rekening_menjadi = Rekening::where('skpd_id', Auth::user()->skpd->id)->get();
         $ssh = SSH::get();
 
         $sebelum = Sebelum::where('pengajuan_id', $id)->get()->map(function ($item) {
@@ -110,7 +114,7 @@ class AdminBerandaController extends Controller
             $item->total = $item->jumlah * $item->nominalssh;
             return $item;
         });
-        return view('admin.detail', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh', 'sebelum', 'sesudah'));
+        return view('admin.detail', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh', 'sebelum', 'sesudah', 'rekening_menjadi'));
     }
 
     //     public function duplikatData()
