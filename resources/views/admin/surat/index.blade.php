@@ -6,11 +6,11 @@
 <div class="row">
     <div class="col-md-12">
         
-      <a href="/superadmin/kunci_rekening/add" class="btn btn-sm btn-primary"><i
-        class="fa fa-plus"></i> Tambah</a><br/><br/>
+      <a href="/admin/surat/add" class="btn btn-sm btn-primary"><i
+        class="fa fa-plus"></i> Buat Surat</a><br/><br/>
         <div class="box box-success">
           <div class="box-header">
-            <i class="fa fa-institution"></i><h3 class="box-title">Data Kunci Rekening</h3>
+            <i class="fa fa-institution"></i><h3 class="box-title">Data Pembuatan Surat</h3>
           </div>
           
           <!-- /.box-header -->
@@ -18,20 +18,19 @@
             <table class="table table-hover">
               <tbody><tr>
                 <th>No</th>
-                <th>Kode Rekening</th>
-                <th>Uraian</th>
+                <th>Nomor Surat</th>
                 <th>Aksi</th>
               </tr>
               @foreach ($data as $key => $item)
               <tr>
                 <td>{{$key + 1}}</td>
-                <td>{{$item->kode}}</td>
-                <td>{{$item->nama}}</td>
+                <td>{{$item->nomor}}</td>
                 <td>
                     {{-- <a href="/superadmin/kunci_rekening/edit/{{$item->id}}" class="btn btn-xs btn-default"><i
                             class="fa fa-edit"></i> Edit</a> --}}
-                    
-                    <a href="/superadmin/kunci_rekening/delete/{{$item->id}}" class="btn btn-xs bg-red-active"><i
+                    <a href="/admin/surat/print/{{$item->id}}" class="btn btn-xs bg-red-active"><i
+                              class="fa fa-print"></i> Cetak</a>
+                    <a href="/admin/surat/delete/{{$item->id}}" class="btn btn-xs bg-red-active"><i
                             class="fa fa-trash"></i> Delete</a>
                     
                 </td>

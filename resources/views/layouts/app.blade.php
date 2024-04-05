@@ -31,7 +31,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       right: 50%;
       left: 50%;
       overflow: hidden;
-      width: 150px;
+      width: 200px;
       height: 50px;
       /* border-radius: 10px; */
       border: 0;
@@ -63,7 +63,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
    */
   .btn-floating.whatsapp {
     font-family: 'digital-7', sans-serif;
-      font-size: 16px;
+      font-size: 20px;
       bottom:888px;
       background-color: #008080;
       border: 2px solid #213120;
@@ -242,11 +242,11 @@ console.log(tanggal,countDownDate);
 </script>
 @stack('js')
 
-  <button class="btn-floating whatsapp">
+  <strong><button class="btn-floating whatsapp">
       <div id="timer">
         timer
       </div>
-  </button>
+  </button></strong>
   
 </body>
 </html>

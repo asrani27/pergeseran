@@ -45,6 +45,7 @@ use App\Http\Controllers\KunciRekeningController;
 use App\Http\Controllers\SSHController;
 use App\Http\Controllers\SuperadminBerandaController;
 use App\Http\Controllers\SuperadminJenisrfkController;
+use App\Http\Controllers\SuratController;
 use App\Http\Controllers\TimerController;
 
 Route::get('/', function () {
@@ -97,6 +98,14 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('pengajuan', [PengajuanController::class, 'index']);
         Route::post('pengajuan/create', [PengajuanController::class, 'store']);
         Route::get('gantipass', [GantiPasswordController::class, 'admin']);
+
+        Route::get('surat', [SuratController::class, 'index']);
+        Route::get('surat/add', [SuratController::class, 'add']);
+        Route::post('surat/add', [SuratController::class, 'store']);
+        Route::get('surat/edit/{id}', [SuratController::class, 'edit']);
+        Route::post('surat/edit/{id}', [SuratController::class, 'update']);
+        Route::get('surat/delete/{id}', [SuratController::class, 'delete']);
+        Route::get('surat/print/{id}', [SuratController::class, 'pdf']);
     });
 });
 

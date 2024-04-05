@@ -7,7 +7,7 @@
 @section('content')
 <section class="content">
   <div class="row text-center">
-    <h1><strong>UPLOAD KEGIATAN</strong></h1>
+    <h1><strong>Buat Surat</strong></h1>
   </div>
   
   
@@ -18,20 +18,20 @@
       <div class="box">
         <!-- /.box-header -->
         <!-- form start -->
-        <form role="form" method="post" action="/superadmin/skpd/upload" enctype="multipart/form-data">
-            @csrf
-          <div class="box-body">
-            <div class="col-xs-12">
-                <div class="form-group">
-                <label>File </label>
-                <input type="file" class="form-control" placeholder="no surat" name="file">
-                </div>
-            </div>
+        <form role="form" method="post" action="/admin/surat/add" enctype="multipart/form-data">
+          @csrf
+        <div class="box-body">
+          <div class="col-xs-12">
+              <div class="form-group">
+              <label>Nomor Surat </label>
+              <input type="text" name="nomor" placeholder="nomor surat" class="form-control">
+              </div>
           </div>
+        </div>
           <!-- /.box-body -->
 
           <div class="box-footer text-center">
-            <button type="submit" class="btn btn-primary"> <i class="fa fa-upload"></i>  Upload</button>
+            <button type="submit" class="btn btn-primary"> <i class="fa fa-save"></i>  Simpan</button>
           </div>
         </form>
       </div>
