@@ -28,7 +28,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <style>
   .btn-floating {
       position: fixed;
-      right: 3%;
+      right: 1%;
       
       overflow: hidden;
       width: 200px;
