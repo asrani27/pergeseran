@@ -28,8 +28,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <style>
   .btn-floating {
       position: fixed;
-      right: 50%;
-      left: 50%;
+      right: 3%;
+      
       overflow: hidden;
       width: 200px;
       height: 50px;
@@ -64,7 +64,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   .btn-floating.whatsapp {
     font-family: 'digital-7', sans-serif;
       font-size: 20px;
-      bottom:918px;
+      bottom:50px;
       background-color: #008080;
       border: 2px solid #213120;
   }
