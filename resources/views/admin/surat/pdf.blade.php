@@ -12,7 +12,7 @@
             <td width="20%"></td>
             <td style="text-align: center">
                 <strong style="font-size: 16px">PEMERINTAH KOTA BANJARMASIN</strong><br/>
-                <strong style="font-size: 24px">DINAS KESEHATAN</strong><br/>
+                <strong style="font-size: 24px">DINAS </strong><br/>
                 Jl.Pramuka Komp.Tirta Dharma Telp.(0511) 4281348<br/>
                 BANJARMASIN
             </td>
