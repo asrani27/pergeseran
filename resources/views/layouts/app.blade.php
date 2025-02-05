@@ -4,6 +4,7 @@ This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,203 +20,253 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <!-- Google Font -->
   <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 
-<!-- IziToast -->
-<link rel="stylesheet" href="/notif/dist/css/iziToast.min.css">
-<script src="/notif/dist/js/iziToast.min.js" type="text/javascript"></script>
+  <!-- IziToast -->
+  <link rel="stylesheet" href="/notif/dist/css/iziToast.min.css">
+  <script src="/notif/dist/js/iziToast.min.js" type="text/javascript"></script>
 </head>
 <style>
-  .btn-floating {
-      position: fixed;
-      right: 1%;
-      
-      overflow: hidden;
-      width: 200px;
-      height: 50px;
-      /* border-radius: 10px; */
-      border: 0;
-      z-index: 9999;
-      color: white;
-      transition: .2s;
+  body {
+    margin: 0;
+    padding: 0;
+
   }
-  
-  /* .btn-floating:hover {
-      width: auto;
-      padding: 0 20px;
-      cursor: pointer;
+
+  #countdown-container {
+    position: fixed;
+    top: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: #fff;
+    padding: 10px 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 16px;
+    z-index: 1050;
+    text-align: center;
   }
-   */
-  .btn-floating span {
-      font-size: 250px;
-      transition: .2s;
-      line-height: 0px;
-      display: none;
-  }
-  
-  /* .btn-floating:hover span {
-      display: inline-block;
-  }
-  
-  .btn-floating:hover img {
-      margin-bottom: -3px;
-  }
-   */
-  .btn-floating.whatsapp {
-    font-family: 'digital-7', sans-serif;
-      font-size: 20px;
-      bottom:50px;
-      background-color: red;
-      border: 2px solid #213120;
-  }
-  
-  .btn-floating.whatsapp:hover {
-      background-color: #1f7a12;
-  }
-  #running-text{
-    background-color: yellow;
-    color: red;
+
+  #countdown-title {
+    font-size: 14px;
     font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .countdown-section {
+    display: inline-block;
+    margin: 0 10px;
+    text-align: center;
+  }
+
+  .countdown-time {
+    font-size: 25px;
+    font-weight: bold;
+    line-height: 1;
+    color: #FFD700;
+  }
+
+  .countdown-label {
+    font-size: 12px;
+    margin-top: 0px;
+    display: block;
+    color: #FFD700;
   }
 </style>
-<div id="running-text"><marquee>{{runningText()}}</marquee></div>
+{{-- <div id="running-text">
+  <marquee>{{runningText()}}</marquee>
+</div> --}}
+
 <body class="hold-transition skin-blue-light sidebar-mini" style="background-color: #008080">
-<div class="wrapper">
+  <div class="wrapper">
 
-  <!-- Main Header -->
-  <header class="main-header">
+    <!-- Main Header -->
+    <header class="main-header">
 
-    <!-- Logo -->
-    <a href="#" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">BPKPAD</span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>BPKPAD</b></span>
-    </a>
-
-    <!-- Header Navbar -->
-    <nav class="navbar navbar-static-top" role="navigation" >
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
+      <!-- Logo -->
+      <a href="#" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini">BPKPAD</span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg"><b>BPKPAD</b></span>
       </a>
-      @include('layouts.navbar')
-    </nav>
-  </header>
-  <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
-    @include('layouts.sidebar')
-  </aside>
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    
+      <!-- Header Navbar -->
+      <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+          <span class="sr-only">Toggle navigation</span>
+        </a>
+        @include('layouts.navbar')
+      </nav>
+    </header>
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+      @include('layouts.sidebar')
+    </aside>
 
-    <!-- Main content -->
-    <section class="content container-fluid">
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
 
+
+      <!-- Main content -->
+      <section class="content container-fluid">
+        <div id="countdown-container">
+          <div id="countdown-title">SISA WAKTU INPUT</div>
+          <div id="countdown">
+            <div class="countdown-section">
+              <span id="days" class="countdown-time">00</span>
+              <span class="countdown-label">Hari</span>
+            </div>
+            <div class="countdown-section">
+              <span id="hours" class="countdown-time">00</span>
+              <span class="countdown-label">Jam</span>
+            </div>
+            <div class="countdown-section">
+              <span id="minutes" class="countdown-time">00</span>
+              <span class="countdown-label">Menit</span>
+            </div>
+            <div class="countdown-section">
+              <span id="seconds" class="countdown-time">00</span>
+              <span class="countdown-label">Detik</span>
+            </div>
+          </div>
+        </div>
         @yield('content')
 
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-  <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- To the right -->
-    <div class="pull-right hidden-xs">
-      BIDANG ANGGARAN
+      </section>
+      <!-- /.content -->
     </div>
-    <!-- Default to the left -->
-    <strong>Copyright &copy; 2022 <a href="#">Kota Banjarmasin</a>.</strong>
-  </footer>
+    <!-- /.content-wrapper -->
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Create the tabs -->
-    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
-      <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
-      <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <!-- Home tab content -->
-      <div class="tab-pane active" id="control-sidebar-home-tab">
-        <h3 class="control-sidebar-heading">Recent Activity</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <i class="menu-icon fa fa-birthday-cake bg-red"></i>
+    <!-- Main Footer -->
+    <footer class="main-footer">
+      <!-- To the right -->
+      <div class="pull-right hidden-xs">
+        BIDANG ANGGARAN
+      </div>
+      <!-- Default to the left -->
+      <strong>Copyright &copy; 2022 <a href="#">Kota Banjarmasin</a>.</strong>
+    </footer>
 
-              <div class="menu-info">
-                <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Create the tabs -->
+      <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+        <li class="active"><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+        <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <!-- Home tab content -->
+        <div class="tab-pane active" id="control-sidebar-home-tab">
+          <h3 class="control-sidebar-heading">Recent Activity</h3>
+          <ul class="control-sidebar-menu">
+            <li>
+              <a href="javascript:;">
+                <i class="menu-icon fa fa-birthday-cake bg-red"></i>
 
-                <p>Will be 23 on April 24th</p>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
+                <div class="menu-info">
+                  <h4 class="control-sidebar-subheading">Langdon's Birthday</h4>
 
-        <h3 class="control-sidebar-heading">Tasks Progress</h3>
-        <ul class="control-sidebar-menu">
-          <li>
-            <a href="javascript:;">
-              <h4 class="control-sidebar-subheading">
-                Custom Template Design
-                <span class="pull-right-container">
+                  <p>Will be 23 on April 24th</p>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <!-- /.control-sidebar-menu -->
+
+          <h3 class="control-sidebar-heading">Tasks Progress</h3>
+          <ul class="control-sidebar-menu">
+            <li>
+              <a href="javascript:;">
+                <h4 class="control-sidebar-subheading">
+                  Custom Template Design
+                  <span class="pull-right-container">
                     <span class="label label-danger pull-right">70%</span>
                   </span>
-              </h4>
+                </h4>
 
-              <div class="progress progress-xxs">
-                <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
-              </div>
-            </a>
-          </li>
-        </ul>
-        <!-- /.control-sidebar-menu -->
+                <div class="progress progress-xxs">
+                  <div class="progress-bar progress-bar-danger" style="width: 70%"></div>
+                </div>
+              </a>
+            </li>
+          </ul>
+          <!-- /.control-sidebar-menu -->
 
+        </div>
+        <!-- /.tab-pane -->
+        <!-- Stats tab content -->
+        <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
+        <!-- /.tab-pane -->
+        <!-- Settings tab content -->
+        <div class="tab-pane" id="control-sidebar-settings-tab">
+          <form method="post">
+            <h3 class="control-sidebar-heading">General Settings</h3>
+
+            <div class="form-group">
+              <label class="control-sidebar-subheading">
+                Report panel usage
+                <input type="checkbox" class="pull-right" checked>
+              </label>
+
+              <p>
+                Some information about this general settings option
+              </p>
+            </div>
+            <!-- /.form-group -->
+          </form>
+        </div>
+        <!-- /.tab-pane -->
       </div>
-      <!-- /.tab-pane -->
-      <!-- Stats tab content -->
-      <div class="tab-pane" id="control-sidebar-stats-tab">Stats Tab Content</div>
-      <!-- /.tab-pane -->
-      <!-- Settings tab content -->
-      <div class="tab-pane" id="control-sidebar-settings-tab">
-        <form method="post">
-          <h3 class="control-sidebar-heading">General Settings</h3>
+    </aside>
+    <!-- /.control-sidebar -->
+    <div class="control-sidebar-bg"></div>
+  </div>
+  <!-- ./wrapper -->
 
-          <div class="form-group">
-            <label class="control-sidebar-subheading">
-              Report panel usage
-              <input type="checkbox" class="pull-right" checked>
-            </label>
+  <!-- REQUIRED JS SCRIPTS -->
 
-            <p>
-              Some information about this general settings option
-            </p>
-          </div>
-          <!-- /.form-group -->
-        </form>
-      </div>
-      <!-- /.tab-pane -->
-    </div>
-  </aside>
-  <!-- /.control-sidebar -->
-  <div class="control-sidebar-bg"></div>
-</div>
-<!-- ./wrapper -->
+  <!-- jQuery 3 -->
+  <script src="/assets/bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/assets/dist/js/adminlte.min.js"></script>
 
-<!-- REQUIRED JS SCRIPTS -->
+  <script>
+    // Set target date and time
+  console.log("{{ targetDate() }}")
+        const targetDate = new Date("{{ targetDate() }}").getTime();
 
-<!-- jQuery 3 -->
-<script src="/assets/bower_components/jquery/dist/jquery.min.js"></script>
-<script src="/assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="/assets/dist/js/adminlte.min.js"></script>
-<script>
-@include('layouts.notif')
+  function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      // Calculate time components
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      // Display the result
+            document.getElementById("days").textContent = days.toString().padStart(2, '0');
+            document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+
+      // If the countdown is over
+      if (distance < 0) {
+          clearInterval(interval);
+          document.getElementById("countdown").textContent = "Waktu Habis!";
+      }
+  }
+
+  // Update the countdown every second
+  const interval = setInterval(updateCountdown, 1000);
+  </script>
+  <script>
+    @include('layouts.notif')
 var tanggal = {!!json_encode(batasWaktu())!!}
 var countDownDate = new Date(tanggal+" 23:59:59").getTime();
 var x = setInterval(function() {
@@ -239,14 +290,15 @@ if (distance < 0) {
 }
 }, 1000);
 console.log(tanggal,countDownDate);
-</script>
-@stack('js')
+  </script>
+  @stack('js')
 
   <strong><button class="btn-floating whatsapp">
       <div id="timer">
         timer
       </div>
-  </button></strong>
-  
+    </button></strong>
+
 </body>
+
 </html>

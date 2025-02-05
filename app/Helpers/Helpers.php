@@ -2,14 +2,20 @@
 
 use Carbon\Carbon;
 use App\Models\Timer;
-use App\Models\JenisRfk;
 use App\Models\Setting;
+use App\Models\JenisRfk;
+use App\Models\BatasInput;
 use Illuminate\Support\Facades\Auth;
 
 function batasWaktu()
 {
     $tanggal = Setting::first()->waktu;
     return Carbon::parse($tanggal)->format('M d, Y');
+}
+function targetDate()
+{
+    $data = BatasInput::where('is_aktif', 1)->first();
+    return $data->sampai;
 }
 function runningText()
 {
