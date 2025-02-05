@@ -35,12 +35,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   #countdown-container {
     position: fixed;
-    top: 2px;
+    top: 0px;
     left: 50%;
     transform: translateX(-50%);
     background-color: #333;
     color: #fff;
-    padding: 10px 10px;
+    padding: 5px 5px;
     border-radius: 5px;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
     font-size: 16px;
@@ -293,11 +293,6 @@ console.log(tanggal,countDownDate);
   </script>
   @stack('js')
 
-  <strong><button class="btn-floating whatsapp">
-      <div id="timer">
-        timer
-      </div>
-    </button></strong>
 
 </body>
 

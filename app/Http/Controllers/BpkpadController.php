@@ -56,7 +56,16 @@ class BpkpadController extends Controller
         $subkegiatan = Subkegiatan::get();
         $rekening = Rekening::get();
         $ssh = SSH::get();
-        return view('bpkpad.pengajuan.detail', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh'));
+        $sebelum = Sebelum::where('pengajuan_id', $id)->get()->map(function ($item) {
+            $item->total = $item->jumlah * $item->nominalssh;
+            return $item;
+        });
+
+        $sesudah = Sesudah::where('pengajuan_id', $id)->get()->map(function ($item) {
+            $item->total = $item->jumlah * $item->nominalssh;
+            return $item;
+        });
+        return view('bpkpad.pengajuan.detail', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh', 'sebelum', 'sesudah'));
     }
     public function terima($id)
     {
