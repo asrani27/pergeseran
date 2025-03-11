@@ -5,8 +5,21 @@ use App\Models\Timer;
 use App\Models\Setting;
 use App\Models\JenisRfk;
 use App\Models\BatasInput;
+use App\Models\RekeningBelanja;
 use Illuminate\Support\Facades\Auth;
 
+function namaProgram($kode)
+{
+    return RekeningBelanja::where('kode_program', $kode)->first() == null ? null : RekeningBelanja::where('kode_program', $kode)->first()->nama_program;
+}
+function namaKegiatan($kode)
+{
+    return RekeningBelanja::where('kode_kegiatan', $kode)->first() == null ? null : RekeningBelanja::where('kode_kegiatan', $kode)->first()->nama_kegiatan;
+}
+function namaSubkegiatan($kode)
+{
+    return RekeningBelanja::where('kode_subkegiatan', $kode)->first() == null ? null : RekeningBelanja::where('kode_subkegiatan', $kode)->first()->nama_subkegiatan;
+}
 function batasWaktu()
 {
     $tanggal = Setting::first()->waktu;

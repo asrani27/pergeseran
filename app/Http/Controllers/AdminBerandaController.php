@@ -10,6 +10,7 @@ use App\Models\Sesudah;
 use App\Models\Kegiatan;
 use App\Models\Rekening;
 use App\Models\Pengajuan;
+use App\Models\RekeningBelanja;
 use App\Models\Subkegiatan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -97,24 +98,31 @@ class AdminBerandaController extends Controller
     public function detail($id)
     {
         $data = Pengajuan::find($id);
+        $tahun = Carbon::parse($data->tanggal)->format('Y');
+        $kode_skpd = $data->skpd->kode_skpd;
+        $kode_subkegiatan = $data->kode_subkegiatan;
 
-        $program = Program::where('skpd_id', Auth::user()->skpd->id)->get();
-        $kegiatan = Kegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
-        $subkegiatan = Subkegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
-        $rekening = Rekening::where('skpd_id', Auth::user()->skpd->id)->where('subkegiatan_id', $id)->get();
-        $rekening_menjadi = Rekening::where('skpd_id', Auth::user()->skpd->id)->get();
-        $ssh = SSH::get();
+        $rekening = RekeningBelanja::where('tahun', $tahun)->where('kode_skpd', $kode_skpd)->where('kode_subkegiatan', $kode_subkegiatan)->groupBy('kode_rekening', 'nama_rekening')
+            ->get(['kode_rekening', 'nama_rekening']);
 
-        $sebelum = Sebelum::where('pengajuan_id', $id)->get()->map(function ($item) {
-            $item->total = $item->jumlah * $item->nominalssh;
-            return $item;
-        });
+        //dd($rekening, $data, $tahun, $kode_skpd);
+        // $program = Program::where('skpd_id', Auth::user()->skpd->id)->get();
+        // $kegiatan = Kegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
+        // $subkegiatan = Subkegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
+        // $rekening = RekeningBelanja::where('skpd_id', Auth::user()->skpd->id)->where('subkegiatan_id', $id)->get();
+        // $rekening_menjadi = Rekening::where('skpd_id', Auth::user()->skpd->id)->get();
+        // $ssh = SSH::get();
 
-        $sesudah = Sesudah::where('pengajuan_id', $id)->get()->map(function ($item) {
-            $item->total = $item->jumlah * $item->nominalssh;
-            return $item;
-        });
-        return view('admin.detail', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh', 'sebelum', 'sesudah', 'rekening_menjadi'));
+        // $sebelum = Sebelum::where('pengajuan_id', $id)->get()->map(function ($item) {
+        //     $item->total = $item->jumlah * $item->nominalssh;
+        //     return $item;
+        // });
+
+        // $sesudah = Sesudah::where('pengajuan_id', $id)->get()->map(function ($item) {
+        //     $item->total = $item->jumlah * $item->nominalssh;
+        //     return $item;
+        // });
+        return view('admin.detail', compact('data', 'rekening'));
     }
 
     //     public function duplikatData()

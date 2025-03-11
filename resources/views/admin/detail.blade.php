@@ -71,35 +71,22 @@
           <div class="col-xs-12">
             <div class="form-group">
               <label>Program</label>
-              <select class="form-control select2" style="width: 100%;" disabled>
-                @foreach ($program as $item)
-                <option value="{{$item->id}}" {{$item->id == $data->id ? 'selected':''}}>{{$item->kode}} -
-                  {{$item->nama}}</option>
-                @endforeach
-              </select>
+              <input type="text" class="form-control"
+                value="{{$data->kode_program}} {{namaProgram($data->kode_program)}}" readonly>
             </div>
           </div>
           <div class="col-xs-12">
             <div class="form-group">
               <label>Kegiatan</label>
-              <select class="form-control select2" style="width: 100%;" disabled name="kegiatan">
-
-                @foreach ($kegiatan as $item)
-                <option value="{{$item->id}}" {{$item->id == $data->id ? 'selected':''}}>{{$item->kode}} -
-                  {{$item->nama}}</option>
-                @endforeach
-              </select>
+              <input type="text" class="form-control"
+                value="{{$data->kode_kegiatan}} {{namaKegiatan($data->kode_kegiatan)}}" readonly>
             </div>
           </div>
           <div class="col-xs-12">
             <div class="form-group">
               <label>Sub Kegiatan</label>
-              <select class="form-control select2" style="width: 100%;" disabled name="subkegiatan">
-                @foreach ($subkegiatan as $item)
-                <option value="{{$item->id}}" {{$item->id == $data->id ? 'selected':''}}>{{$item->kode}} -
-                  {{$item->nama}}</option>
-                @endforeach
-              </select>
+              <input type="text" class="form-control"
+                value="{{$data->kode_subkegiatan}} {{namaSubkegiatan($data->kode_subkegiatan)}}" readonly>
             </div>
           </div>
           <div class="col-xs-12">
@@ -137,7 +124,7 @@
                           <th>Jumlah</th>
                           <th>Nominal</th>
                         </tr>
-                        @foreach ($sebelum as $key => $item)
+                        {{-- @foreach ($sebelum as $key => $item)
                         <tr>
                           <td>{{$key+1}}</td>
                           <td>{{$item->rekawal}}</td>
@@ -151,7 +138,7 @@
                             @endif
                           </td>
                         </tr>
-                        @endforeach
+                        @endforeach --}}
 
 
                         <tr style="background-color: aquamarine">
@@ -160,20 +147,20 @@
                           <th>Satuan</th>
                           <th>Nominal</th>
                         </tr>
-                        @foreach ($sebelum as $key => $item)
+                        {{-- @foreach ($sebelum as $key => $item)
                         <tr>
                           <td>{{$key+1}}</td>
                           <td>{{$item->ssh}}</td>
                           <td>{{$item->satuan}}</td>
                           <td>{{number_format($item->nominalssh)}}</td>
                         </tr>
-                        @endforeach
+                        @endforeach --}}
                       </table>
 
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer with-border">
-                      Total : {{number_format($sebelum->sum('total'))}}
+                      {{-- Total : {{number_format($sebelum->sum('total'))}} --}}
                     </div>
                   </div>
                   <!-- /.box -->
@@ -200,7 +187,7 @@
                           <th>Jumlah</th>
                           <th>Nominal</th>
                         </tr>
-                        @foreach ($sesudah as $key => $item)
+                        {{-- @foreach ($sesudah as $key => $item)
                         <tr>
                           <td>{{$key+1}}</td>
                           <td>{{$item->rekawal}}</td>
@@ -214,7 +201,7 @@
                             @endif
                           </td>
                         </tr>
-                        @endforeach
+                        @endforeach --}}
 
 
                         <tr style="background-color: aquamarine">
@@ -223,19 +210,19 @@
                           <th>Satuan</th>
                           <th>Nominal</th>
                         </tr>
-                        @foreach ($sesudah as $key => $item)
+                        {{-- @foreach ($sesudah as $key => $item)
                         <tr>
                           <td>{{$key+1}}</td>
                           <td>{{$item->ssh}}</td>
                           <td>{{$item->satuan}}</td>
                           <td>{{number_format($item->nominalssh)}}</td>
                         </tr>
-                        @endforeach
+                        @endforeach --}}
                       </table>
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer with-border">
-                      Total : {{number_format($sesudah->sum('total'))}}
+                      {{-- Total : {{number_format($sesudah->sum('total'))}} --}}
                     </div>
                   </div>
                   <!-- /.box -->
@@ -284,7 +271,7 @@
               <select id="rekeningawal" class="form-control select2" style="width: 100%;" required name="rekawal">
                 <option value="" selected>Rekening Awal</option>
                 @foreach ($rekening as $item)
-                <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
+                <option value="{{$item->kode_rekening}}">{{$item->kode_rekening}} - {{$item->nama_rekening}}</option>
                 @endforeach
               </select>
             </div>
@@ -299,12 +286,12 @@
           <div class="col-xs-12">
             <div class="form-group">
               <label>Standar Satuan Harga</label>
-              <select class="form-control select2" style="width: 100%;" required name="ssh">
+              <select id="sshawal" class="form-control select2" style="width: 100%;" required name="ssh">
                 <option selected="">Pilih Standar Satuan Harga</option>
-                @foreach ($ssh as $item)
+                {{-- @foreach ($ssh as $item)
                 <option value="{{$item->id}}">{{$item->kode}} - {{$item->uraian}} - {{number_format($item->harga)}}
                 </option>
-                @endforeach
+                @endforeach --}}
               </select>
             </div>
           </div>
@@ -334,11 +321,11 @@
           <div class="col-xs-9">
             <div class="form-group">
               <label>Dirubah Menjadi</label>
-              <select id="rekeningawal" class="form-control select2" style="width: 100%;" required name="rekawal">
+              <select id="rekeningmenjadi" class="form-control select2" style="width: 100%;" required name="rekawal">
                 <option value="" selected>-pilih-</option>
-                @foreach ($rekening_menjadi as $item)
+                {{-- @foreach ($rekening_menjadi as $item)
                 <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
-                @endforeach
+                @endforeach --}}
               </select>
             </div>
           </div>
@@ -354,10 +341,10 @@
               <label>Standar Satuan Harga</label>
               <select class="form-control select2" style="width: 100%;" required name="ssh">
                 <option selected="">Pilih Standar Satuan Harga</option>
-                @foreach ($ssh as $item)
+                {{-- @foreach ($ssh as $item)
                 <option value="{{$item->id}}">{{$item->kode}} - {{$item->uraian}} - {{number_format($item->harga)}}
                 </option>
-                @endforeach
+                @endforeach --}}
               </select>
             </div>
           </div>
@@ -383,5 +370,49 @@
     //Initialize Select2 Elements
     $('.select2').select2()
   })
+</script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  $(document).ready(function(){
+
+
+  $("#rekeningawal").change(function(){
+  var kode_rekeningawal = $("#rekeningawal").val(); 
+  
+  axios({
+    method: 'get',
+    url: '/rekeningawal/'+kode_rekeningawal,
+  })
+  .then(function (response) {
+    console.log(response.data.length);
+    $("#sshawal").html('');
+    $("#sshawal").append('<option value="">-pilih ssh-</option>');
+    for (var i = 0; i < response.data.length; i++) 
+    {
+      $("#sshawal").append('<option value="' + response.data[i].kode_ssh + '">' + response.data[i].kode_ssh +' '+ response.data[i].nama_ssh +' '+ response.data[i].pagu.toLocaleString('id-ID')  +'  '+  '</option>');
+    }
+    });
+  })
+
+  $("#kegiatan").change(function(){
+  var id_kegiatan = $("#kegiatan").val(); 
+  console.log(id_kegiatan);
+  axios({
+    method: 'get',
+    url: '/subkegiatan/'+id_kegiatan,
+  })
+  .then(function (response) {
+    console.log(response.data.length);
+    $("#subkegiatan").html('');
+    $("#subkegiatan").append('<option value="">-pilih subkegiatan-</option>');
+    for (var i = 0; i < response.data.length; i++) 
+    {
+      $("#subkegiatan").append('<option value="' + response.data[i].kode_subkegiatan + '">' + response.data[i].kode_subkegiatan +' '+ response.data[i].nama_subkegiatan +  '</option>');
+    }
+    });
+  })
+
+})
 </script>
 @endpush

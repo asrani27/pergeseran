@@ -67,6 +67,12 @@ class SuperadminBerandaController extends Controller
 
         return response()->json($data);
     }
+    public function rekeningawalJson($id)
+    {
+
+        $data = RekeningBelanja::where('kode_rekening', 'like', '%' . $id . '%')->get();
+        return response()->json($data);
+    }
     public function subkegiatanJson($id)
     {
         $data = RekeningBelanja::where('kode_subkegiatan', 'like', '%' . $id . '%')->groupBy('kode_subkegiatan', 'nama_subkegiatan')

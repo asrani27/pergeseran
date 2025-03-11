@@ -46,9 +46,9 @@ class PengajuanController extends Controller
         $n->hal = $req->hal;
         $n->pengantar = $req->pengantar;
         $n->lampiran = $req->lampiran;
-        $n->program_id = $req->program;
-        $n->kegiatan_id = $req->kegiatan;
-        $n->subkegiatan_id = $req->subkegiatan;
+        $n->kode_program = $req->program;
+        $n->kode_kegiatan = $req->kegiatan;
+        $n->kode_subkegiatan = $req->subkegiatan;
         $n->status_operator = 1;
         $n->status_kepala_skpd = 0;
         $n->save();
