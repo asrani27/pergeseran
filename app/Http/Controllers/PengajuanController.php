@@ -9,6 +9,7 @@ use App\Models\Pengajuan;
 use App\Models\Subkegiatan;
 use Illuminate\Http\Request;
 use App\Models\PerubahanRekening;
+use App\Models\RekeningBelanja;
 use App\Models\SSH;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -17,7 +18,9 @@ class PengajuanController extends Controller
 {
     public function index()
     {
-        $program = Program::where('skpd_id', Auth::user()->skpd->id)->get();
+        $program = RekeningBelanja::where('kode_skpd', Auth::user()->skpd->kode_skpd)->groupBy('kode_program', 'nama_program')
+            ->get(['kode_program', 'nama_program']);
+
         $kegiatan = Kegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
         $subkegiatan = Subkegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
         $rekening = Rekening::where('skpd_id', Auth::user()->skpd->id)->get();

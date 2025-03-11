@@ -6,6 +6,7 @@ use App\Models\SSH;
 use App\Models\Timer;
 use GuzzleHttp\Client;
 use App\Models\Kegiatan;
+use App\Models\RekeningBelanja;
 use App\Models\Setting;
 use App\Models\Subkegiatan;
 use Illuminate\Http\Request;
@@ -60,12 +61,16 @@ class SuperadminBerandaController extends Controller
 
     public function kegiatanJson($id)
     {
-        $data = Kegiatan::where('program_id', $id)->get();
+        $data = RekeningBelanja::where('kode_kegiatan', 'like', '%' . $id . '%')->groupBy('kode_kegiatan', 'nama_kegiatan')
+            ->get(['kode_kegiatan', 'nama_kegiatan']);
+
+
         return response()->json($data);
     }
     public function subkegiatanJson($id)
     {
-        $data = Subkegiatan::where('kegiatan_id', $id)->get();
+        $data = RekeningBelanja::where('kode_subkegiatan', 'like', '%' . $id . '%')->groupBy('kode_subkegiatan', 'nama_subkegiatan')
+            ->get(['kode_subkegiatan', 'nama_subkegiatan']);
         return response()->json($data);
     }
 }

@@ -2,10 +2,13 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SSHController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TkrkController;
 use App\Http\Controllers\KadisController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SuratController;
+use App\Http\Controllers\TimerController;
 use App\Http\Controllers\BpkpadController;
 use App\Http\Controllers\DaftarController;
 use App\Http\Controllers\LogoutController;
@@ -15,6 +18,7 @@ use App\Http\Controllers\AdminKrkController;
 use App\Http\Controllers\AdminPptkController;
 use App\Http\Controllers\PengajuanController;
 use App\Http\Controllers\PPTKMurniController;
+use App\Http\Controllers\ImportDataController;
 use App\Http\Controllers\AdminBidangController;
 use App\Http\Controllers\BidangKirimController;
 use App\Http\Controllers\BidangMurniController;
@@ -32,6 +36,7 @@ use App\Http\Controllers\BidangBerandaController;
 use App\Http\Controllers\BidangProgramController;
 use App\Http\Controllers\DaftarLayananController;
 use App\Http\Controllers\GantiPasswordController;
+use App\Http\Controllers\KunciRekeningController;
 use App\Http\Controllers\BidangKegiatanController;
 use App\Http\Controllers\SuperadminSkpdController;
 use App\Http\Controllers\AdminBatasInputController;
@@ -41,12 +46,8 @@ use App\Http\Controllers\BidangRealisasiController;
 use App\Http\Controllers\BidangLaporanRFKController;
 use App\Http\Controllers\BidangPergeseranController;
 use App\Http\Controllers\BidangSubkegiatanController;
-use App\Http\Controllers\KunciRekeningController;
-use App\Http\Controllers\SSHController;
 use App\Http\Controllers\SuperadminBerandaController;
 use App\Http\Controllers\SuperadminJenisrfkController;
-use App\Http\Controllers\SuratController;
-use App\Http\Controllers\TimerController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -62,6 +63,11 @@ Route::get('timer', [TimerController::class, 'timer']);
 Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
     Route::prefix('superadmin')->group(function () {
 
+        Route::get('importdata', [ImportDataController::class, 'index']);
+        Route::post('importdata/koderekening', [ImportDataController::class, 'koderekening']);
+        Route::post('importdata/subkegiatan', [ImportDataController::class, 'subkegiatan']);
+        Route::post('importdata/kegiatan', [ImportDataController::class, 'kegiatan']);
+        Route::post('importdata/program', [ImportDataController::class, 'program']);
         Route::get('beranda', [SuperadminBerandaController::class, 'index']);
         Route::get('kunci_rekening', [KunciRekeningController::class, 'index']);
         Route::get('kunci_rekening/add', [KunciRekeningController::class, 'add']);

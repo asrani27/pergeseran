@@ -78,7 +78,7 @@
                 <select id="program" class="form-control select2" style="width: 100%;" required name="program">
                   <option value="" selected>Pilih Program</option>
                   @foreach ($program as $item)
-                  <option value="{{$item->id}}">{{$item->kode}} - {{$item->nama}}</option>
+                  <option value="{{$item->kode_program}}">{{$item->kode_program}} - {{$item->nama_program}}</option>
                   @endforeach
                 </select>
               </div>
@@ -198,7 +198,7 @@
     $("#kegiatan").append('<option value="">-pilih kegiatan-</option>');
     for (var i = 0; i < response.data.length; i++) 
     {
-      $("#kegiatan").append('<option value="' + response.data[i].id + '">' + response.data[i].kode +' '+ response.data[i].nama +  '</option>');
+      $("#kegiatan").append('<option value="' + response.data[i].kode_kegiatan + '">' + response.data[i].kode_kegiatan +' '+ response.data[i].nama_kegiatan +  '</option>');
     }
     });
   })
@@ -216,7 +216,7 @@
     $("#subkegiatan").append('<option value="">-pilih subkegiatan-</option>');
     for (var i = 0; i < response.data.length; i++) 
     {
-      $("#subkegiatan").append('<option value="' + response.data[i].id + '">' + response.data[i].kode +' '+ response.data[i].nama +  '</option>');
+      $("#subkegiatan").append('<option value="' + response.data[i].kode_subkegiatan + '">' + response.data[i].kode_subkegiatan +' '+ response.data[i].nama_subkegiatan +  '</option>');
     }
     });
   })
