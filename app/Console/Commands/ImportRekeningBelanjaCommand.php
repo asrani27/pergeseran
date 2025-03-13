@@ -39,7 +39,7 @@ class ImportRekeningBelanjaCommand extends Command
      */
     public function handle()
     {
-        $filePath = public_path('excel/rekeningbelanja.xlsx');
+        $filePath = public_path('excel/rekeningbelanja2.xlsx');
 
         if (!file_exists($filePath)) {
             $this->error("File tidak ditemukan: $filePath");
