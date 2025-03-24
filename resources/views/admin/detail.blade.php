@@ -255,7 +255,7 @@
     </div>
 </section>
 <div class="modal fade" id="modal-default">
-  <div class="modal-dialog " style="margin-top:15%">
+  <div class="modal-dialog " style="margin-top:2%">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -265,36 +265,82 @@
       <div class="modal-body">
         <form method="post" action="/admin/beranda/detail/{{$data->id}}/sebelum">
           @csrf
-          <div class="col-xs-9">
+          <div class="col-xs-12">
             <div class="form-group">
-              <label>Rekening Awal</label>
+              <label>Rekening / Akun</label>
               <select id="rekeningawal" class="form-control select2" style="width: 100%;" required name="rekawal">
-                <option value="" selected>Rekening Awal</option>
+                <option value="" selected>-</option>
                 @foreach ($rekening as $item)
                 <option value="{{$item->kode_rekening}}">{{$item->kode_rekening}} - {{$item->nama_rekening}}</option>
                 @endforeach
               </select>
             </div>
           </div>
-          <div class="col-xs-3">
-            <div class="form-group">
-              <label>Jumlah</label>
-              <input type="text" class="form-control" placeholder="jumlah" required name="jumlah">
-            </div>
-          </div>
-
           <div class="col-xs-12">
             <div class="form-group">
-              <label>Standar Satuan Harga</label>
-              <select id="sshawal" class="form-control select2" style="width: 100%;" required name="ssh">
-                <option selected="">Pilih Standar Satuan Harga</option>
-                {{-- @foreach ($ssh as $item)
-                <option value="{{$item->id}}">{{$item->kode}} - {{$item->uraian}} - {{number_format($item->harga)}}
-                </option>
-                @endforeach --}}
+              <label>Jenis Standar Harga</label>
+              <select class="form-control select2" style="width: 100%;" required name="jenisssh">
+                <option value="" selected>-</option>
+                <option value="SSH">SSH</option>
+                <option value="HSPK">HSPK</option>
+                <option value="SBU">SBU</option>
+                <option value="ASB">ASB</option>
               </select>
             </div>
           </div>
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label>Komponen</label>
+              <select id="komponenawal" class="form-control select2" style="width: 100%;" required name="komponenawal">
+                <option selected="">-</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label>Spesifikasi Komponen</label>
+              <select id="spekkomponenawal" class="form-control select2" style="width: 100%;" required
+                name="spekkomponenawal">
+                <option selected="">-</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label>Satuan</label>
+              <input type="text" class="form-control" placeholder="-" readonly>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label>Harga Satuan</label>
+              <input type="text" class="form-control" placeholder="-" readonly>
+            </div>
+          </div>
+
+          <div class="col-xs-6">
+            <div class="form-group">
+              <label>Koefisien</label>
+              <input type="text" class="form-control" required>
+              <input type="text" class="form-control" required>
+              <input type="text" class="form-control" required>
+            </div>
+          </div>
+          <div class="col-xs-6">
+            <div class="form-group">
+              <label>Satuan</label>
+              <select class="form-control select2" style="width: 100%;" required name="satuan1">
+                <option value="" selected>-</option>
+              </select>
+              <select class="form-control select2" style="width: 100%;" required name="satuan1">
+                <option value="" selected>-</option>
+              </select>
+              <select class="form-control select2" style="width: 100%;" required name="satuan1">
+                <option value="" selected>-</option>
+              </select>
+            </div>
+          </div>
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Keluar</button>

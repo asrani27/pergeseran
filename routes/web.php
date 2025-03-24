@@ -46,6 +46,7 @@ use App\Http\Controllers\BidangRealisasiController;
 use App\Http\Controllers\BidangLaporanRFKController;
 use App\Http\Controllers\BidangPergeseranController;
 use App\Http\Controllers\BidangSubkegiatanController;
+use App\Http\Controllers\SatuanController;
 use App\Http\Controllers\SuperadminBerandaController;
 use App\Http\Controllers\SuperadminJenisrfkController;
 
@@ -77,6 +78,8 @@ Route::group(['middleware' => ['auth', 'role:superadmin']], function () {
         Route::post('kunci_rekening/edit/{id}', [KunciRekeningController::class, 'update']);
         Route::get('kunci_rekening/delete/{id}', [KunciRekeningController::class, 'delete']);
         Route::get('ssh', [SSHController::class, 'index']);
+        Route::get('satuan', [SatuanController::class, 'index']);
+        Route::get('satuan/search', [SatuanController::class, 'search']);
         Route::get('ssh/upload', [SSHController::class, 'upload']);
         Route::post('ssh/upload', [SSHController::class, 'storeUpload']);
         Route::get('ssh/search', [SSHController::class, 'search']);

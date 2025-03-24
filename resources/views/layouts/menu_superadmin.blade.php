@@ -4,6 +4,8 @@
             class="fa fa-institution"></i> <span>SKPD</span></a></li>
 <li class="{{ (request()->is('superadmin/ssh*')) ? 'active' : '' }}"><a href="/superadmin/ssh"><i
             class="fa fa-list"></i> <span>SSH</span></a></li>
+<li class="{{ (request()->is('superadmin/satuan*')) ? 'active' : '' }}"><a href="/superadmin/satuan"><i
+            class="fa fa-list"></i> <span>Satuan</span></a></li>
 <li class="{{ (request()->is('superadmin/kunci_rekening*')) ? 'active' : '' }}"><a href="/superadmin/kunci_rekening"><i
             class="fa fa-list"></i> <span>Kunci Rekening</span></a></li>
 <li class="{{ (request()->is('superadmin/importdata*')) ? 'active' : '' }}"><a href="/superadmin/importdata"><i
