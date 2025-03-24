@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Imports\SatuanImport;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Session;
 
 class ImportDataController extends Controller
 {
@@ -12,9 +15,10 @@ class ImportDataController extends Controller
         return view('superadmin.import');
     }
 
-    public function koderekening(Request $req)
+    public function satuan(Request $req)
     {
-        Excel::import(new KodeRekeningImport, $req->file);
+        Excel::import(new SatuanImport, $req->file);
+        Session::flash('success', 'Satuan DiImport');
         return back();
     }
 
