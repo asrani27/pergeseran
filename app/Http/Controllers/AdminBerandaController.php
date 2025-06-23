@@ -105,6 +105,7 @@ class AdminBerandaController extends Controller
         $rekening = RekeningBelanja::where('tahun', $tahun)->where('kode_skpd', $kode_skpd)->where('kode_subkegiatan', $kode_subkegiatan)->groupBy('kode_rekening', 'nama_rekening')
             ->get(['kode_rekening', 'nama_rekening']);
 
+        $ssh = SSH::get();
         //dd($rekening, $data, $tahun, $kode_skpd);
         // $program = Program::where('skpd_id', Auth::user()->skpd->id)->get();
         // $kegiatan = Kegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
@@ -122,7 +123,7 @@ class AdminBerandaController extends Controller
         //     $item->total = $item->jumlah * $item->nominalssh;
         //     return $item;
         // });
-        return view('admin.detail', compact('data', 'rekening'));
+        return view('admin.detail', compact('data', 'rekening', 'ssh'));
     }
 
     //     public function duplikatData()

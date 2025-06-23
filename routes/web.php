@@ -115,7 +115,9 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
         Route::get('surat/edit/{id}', [SuratController::class, 'edit']);
         Route::post('surat/edit/{id}', [SuratController::class, 'update']);
         Route::get('surat/delete/{id}', [SuratController::class, 'delete']);
-        Route::get('surat/print/{id}', [SuratController::class, 'pdf']);
+        Route::get('surat1/print/{id}', [SuratController::class, 'surat1']);
+        Route::get('surat2/print/{id}', [SuratController::class, 'surat2']);
+        Route::get('surat3/print/{id}', [SuratController::class, 'surat3']);
     });
 });
 

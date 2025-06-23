@@ -32,20 +32,32 @@ class SuratController extends Controller
         $data = Surat::find($id);
         return view('admin.surat.edit', compact('data'));
     }
-    public function update(Request $req, $id)
-    {
-    }
+    public function update(Request $req, $id) {}
     public function delete($id)
     {
         $data = Surat::find($id)->delete();
         Session::flash('success', 'berhasil');
         return back();
     }
-    public function pdf($id)
+    public function surat1($id)
     {
         $customPaper = array(0, 0, 610, 860);
         $data = Surat::find($id);
-        $pdf = PDF::loadView('admin.surat.pdf', compact('data'))->setPaper($customPaper);
-        return $pdf->stream(Auth::user()->skpd->nama . '_surat.pdf');
+        $pdf = PDF::loadView('admin.surat.surat1', compact('data'))->setPaper($customPaper);
+        return $pdf->stream(Auth::user()->skpd->nama . '_surat1.pdf');
+    }
+    public function surat2($id)
+    {
+        $customPaper = array(0, 0, 610, 860);
+        $data = Surat::find($id);
+        $pdf = PDF::loadView('admin.surat.surat2', compact('data'))->setPaper($customPaper);
+        return $pdf->stream(Auth::user()->skpd->nama . '_surat2.pdf');
+    }
+    public function surat3($id)
+    {
+        $customPaper = array(0, 0, 610, 860);
+        $data = Surat::find($id);
+        $pdf = PDF::loadView('admin.surat.surat3', compact('data'))->setPaper($customPaper);
+        return $pdf->stream(Auth::user()->skpd->nama . '_surat3.pdf');
     }
 }
