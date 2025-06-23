@@ -29,13 +29,17 @@
               <td>
                 {{-- <a href="/superadmin/kunci_rekening/edit/{{$item->id}}" class="btn btn-xs btn-default"><i
                     class="fa fa-edit"></i> Edit</a> --}}
-                <a href="/admin/surat1/print/{{$item->id}}" class="btn btn-xs bg-red-active"><i class="fa fa-print"></i>
+                <a href="/admin/surat1/print/{{$item->id}}" target="_blank" class="btn btn-xs bg-red-active"><i
+                    class="fa fa-print"></i>
                   Surat 1</a>
-                <a href="/admin/surat2/print/{{$item->id}}" class="btn btn-xs bg-red-active"><i class="fa fa-print"></i>
+                <a href="/admin/surat2/print/{{$item->id}}" target="_blank" class="btn btn-xs bg-red-active"><i
+                    class="fa fa-print"></i>
                   Surat 2</a>
-                <a href="/admin/surat3/print/{{$item->id}}" class="btn btn-xs bg-red-active"><i class="fa fa-print"></i>
+                <a href="/admin/surat3/print/{{$item->id}}" target="_blank" class="btn btn-xs bg-red-active"><i
+                    class="fa fa-print"></i>
                   Surat 3</a>
-                <a href="/admin/surat/delete/{{$item->id}}" class="btn btn-xs bg-red-active"><i class="fa fa-trash"></i>
+                <a href="/admin/surat/delete/{{$item->id}}" target="_blank" class="btn btn-xs bg-red-active"><i
+                    class="fa fa-trash"></i>
                   Delete</a>
 
               </td>
