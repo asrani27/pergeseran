@@ -21,6 +21,11 @@ class SuperadminBerandaController extends Controller
         return view('superadmin.home', compact('timer', 'running_text'));
     }
 
+    public function sshJson($kode)
+    {
+        $data = SSH::where('kode', $kode)->first();
+        return response()->json($data);
+    }
     public function updateTimer(Request $req)
     {
         Setting::first()->update([

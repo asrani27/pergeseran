@@ -58,6 +58,7 @@ Route::get('login', [LoginController::class, 'index'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::get('lupa-password', [LupaPasswordController::class, 'index']);
 Route::get('kegiatan/{id}', [SuperadminBerandaController::class, 'kegiatanJson']);
+Route::get('ssh/{kode}', [SuperadminBerandaController::class, 'sshJson']);
 Route::get('subkegiatan/{id}', [SuperadminBerandaController::class, 'subkegiatanJson']);
 Route::get('rekeningawal/{id}', [SuperadminBerandaController::class, 'rekeningawalJson']);
 Route::get('timer', [TimerController::class, 'timer']);

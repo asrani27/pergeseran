@@ -2,6 +2,7 @@
 
 use Carbon\Carbon;
 use App\Models\Timer;
+use App\Models\Satuan;
 use App\Models\Setting;
 use App\Models\JenisRfk;
 use App\Models\BatasInput;
@@ -29,6 +30,11 @@ function targetDate()
 {
     $data = BatasInput::where('is_aktif', 1)->first();
     return $data->sampai;
+}
+
+function satuan()
+{
+    return Satuan::get();
 }
 function runningText()
 {

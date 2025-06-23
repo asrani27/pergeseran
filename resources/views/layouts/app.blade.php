@@ -265,7 +265,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   // Update the countdown every second
   const interval = setInterval(updateCountdown, 1000);
   </script>
-  <script>
+  {{-- <script>
     @include('layouts.notif')
 var tanggal = {!!json_encode(batasWaktu())!!}
 var countDownDate = new Date(tanggal+" 23:59:59").getTime();
@@ -290,7 +290,7 @@ if (distance < 0) {
 }
 }, 1000);
 console.log(tanggal,countDownDate);
-  </script>
+  </script> --}}
   @stack('js')
 
 

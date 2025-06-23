@@ -291,52 +291,68 @@
           <div class="col-xs-12">
             <div class="form-group">
               <label>Komponen</label>
-              <select id="komponenawal" class="form-control select2" style="width: 100%;" required name="komponenawal">
-                <option selected="">-</option>
+              <select class="form-control select2" style="width: 100%;" required name="komponenawal">
+                <option value="" selected>-</option>
+                @foreach ($ssh as $item)
+                <option value="{{$item->kode}}">{{$item->kode}} - {{$item->uraian}}</option>
+                @endforeach
               </select>
             </div>
           </div>
           <div class="col-xs-12">
             <div class="form-group">
               <label>Spesifikasi Komponen</label>
-              <select id="spekkomponenawal" class="form-control select2" style="width: 100%;" required
+              <select id="spesifikasi" class="form-control select2" style="width: 100%;" required
                 name="spekkomponenawal">
-                <option selected="">-</option>
+                <option value="" selected>-</option>
+                @foreach ($ssh as $item)
+                <option value="{{$item->kode}}">{{$item->kode}} - {{$item->spesifikasi}}</option>
+                @endforeach
               </select>
             </div>
           </div>
           <div class="col-xs-12">
             <div class="form-group">
               <label>Satuan</label>
-              <input type="text" class="form-control" placeholder="-" readonly>
+              <input type="text" class="form-control" placeholder="-" id="satuan_sebelum" name='satuan_sebelum'
+                readonly>
             </div>
           </div>
           <div class="col-xs-12">
             <div class="form-group">
               <label>Harga Satuan</label>
-              <input type="text" class="form-control" placeholder="-" readonly>
+              <input type="text" class="form-control" placeholder="-" id="harga_sebelum" name="harga_sebelum" readonly>
             </div>
           </div>
 
           <div class="col-xs-6">
             <div class="form-group">
               <label>Koefisien</label>
-              <input type="text" class="form-control" required>
-              <input type="text" class="form-control" required>
-              <input type="text" class="form-control" required>
+              <input type="text" class="form-control">
+              <input type="text" class="form-control">
+              <input type="text" class="form-control">
             </div>
           </div>
           <div class="col-xs-6">
             <div class="form-group">
               <label>Satuan</label>
-              <select class="form-control select2" style="width: 100%;" required name="satuan1">
+              <select class="form-control select2" style="width: 100%;" name="satuan1">
                 <option value="" selected>-</option>
+                @foreach (satuan() as $item)
+                <option value="{{$item->nama}}">{{$item->nama}}</option>
+                @endforeach
               </select>
-              <select class="form-control select2" style="width: 100%;" required name="satuan1">
+              <select class="form-control select2" style="width: 100%;" name="satuan1">
                 <option value="" selected>-</option>
+                @foreach (satuan() as $item)
+                <option value="{{$item->nama}}">{{$item->nama}}</option>
+                @endforeach
               </select>
-              <select class="form-control select2" style="width: 100%;" required name="satuan1">
+              <select class="form-control select2" style="width: 100%;" name="satuan1">
                 <option value="" selected>-</option>
+                @foreach (satuan() as $item)
+                <option value="{{$item->nama}}">{{$item->nama}}</option>
+                @endforeach
               </select>
             </div>
           </div>
@@ -391,7 +407,9 @@
             <div class="form-group">
               <label>Komponen</label>
               <select id="komponenawal" class="form-control select2" style="width: 100%;" required name="komponenawal">
-                <option selected="">-</option>
+                @foreach ($ssh as $item)
+                <option value="{{$item->kode}}">{{$item->kode}} - {{$item->uraian}}</option>
+                @endforeach
               </select>
             </div>
           </div>
@@ -469,6 +487,26 @@
 <script>
   $(document).ready(function(){
 
+$("#spesifikasi").change(function(){
+  var id_spesifikasi = $("#spesifikasi").val(); 
+  console.log(id_spesifikasi);
+  axios({
+    method: 'get',
+    url: '/ssh/'+id_spesifikasi,
+  })
+  .then(function (response) {
+    console.log(response.data);
+    document.getElementById("satuan_sebelum").value =response.data.satuan;
+    document.getElementById("harga_sebelum").value =response.data.harga.toLocaleString('en-US');
+    // $("#kegiatan").html('');
+    // $("#subkegiatan").html('');
+    // $("#kegiatan").append('<option value="">-pilih kegiatan-</option>');
+    // for (var i = 0; i < response.data.length; i++) 
+    // {
+    //   $("#kegiatan").append('<option value="' + response.data[i].kode_kegiatan + '">' + response.data[i].kode_kegiatan +' '+ response.data[i].nama_kegiatan +  '</option>');
+    // }
+    });
+  });
 
   $("#rekeningawal").change(function(){
   var kode_rekeningawal = $("#rekeningawal").val(); 
