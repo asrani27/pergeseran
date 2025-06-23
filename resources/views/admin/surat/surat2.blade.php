@@ -24,65 +24,60 @@
             </td>
         </tr>
     </table>
+    <h3 style="text-align: center">SURAT PERNYATAAN TANGGUNG JAWAB MUTLAK</h3>
 
-    <table width="100%" border=0>
+    <table width="100%" border=0 style="padding-left:110px">
         <tr>
-            <td width="15%">Nomor</td>
-            <td width="50%">: 813.3/ -Sekr/Diskes.</td>
-            <td rowspan="10" valign="top" style="padding-left:35px">
-                Banjarmasin, {{\Carbon\Carbon::now()->translatedFormat('d F Y')}} <br /> <br />
-                Kepada Yth.<br /> <br />
-                Sekretaris Daerah <br />
-                di -<br />
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Banjarmasin
-
-            </td>
+            <td colspan=2> Saya yang bertanda tangan dibawah ini :</td>
         </tr>
         <tr>
-            <td>Sifat</td>
-            <td>: Lampiran</td>
+            <td>Nama</td>
+            <td>: H. Muhammad Isa Ansari, SE., M.AP</td>
         </tr>
         <tr>
-            <td>Lampiran</td>
-            <td>: 1 (satu) berkas</td>
+            <td>NIP</td>
+            <td>: 19680111 199303 1 006</td>
         </tr>
         <tr>
-            <td>Perihal</td>
-            <td>: Permohonan Persetujan Pergeseran Anggaran pada APBD Tahun 2023</td>
+            <td>Jabatan</td>
+            <td>: Kepala Dinas Koperasi, Usaha Mikro dan Tenaga Kerja</td>
         </tr>
     </table>
-
+    <br />
     <table width="100%" border=0>
         <tr>
             <td width="15%"></td>
-            <td colspan="2">Dengan Hormat,<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dengan
-                memperhatikan ketentuan pergeseran anggaran yang tercantum dalam Peraturan Wali Kota Banjarmasin Nomor
-                18 Tahun 2023 tentang Tata Cara Pergeseran Anggaran Pendapatan dan Belanja Daerah, dengan ini kami
-                mengajukan permohonan pergeseran anggaran pada DPA-Dinas Koperasi, Usaha Mikro dan Tenaga Kerja APBD TA
-                2023, dengan pertimbangan sebagai berikut <br /><br /></td>
+            <td colspan="2">Dengan ini menyatakan bahwa :<br /><br />
 
-        </tr>
-        <tr>
-            <td></td>
-            <td colspan="2">1. Sub Kegiatan Pemberdayaan Kelembagaan Potensi dan Pengembangan Usaha Mikro dilakukan
-                pergeseran karena berdasarkan laporan hasil pemeriksaan dari Badan Pemeriksa Keuangan (BPK) bahwa adanya
-                ketidaksesuaian standar biaya umum (SBU) pada belanja jasa tenaga ahli pada program inkubator bisnis
-                “Kawal Incubator”, sebagaimana telah diatur dalam Peraturan Presiden Nomor 33 tahun 2020 tentang Standar
-                Harga Satuan Regional</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td colspan="2">
-                <br />Demikian kami sampaikan, atas pertimbangan dan proses selanjutnya diucapkan terima
-                kasih<br /><br />
+                1) Bertanggung jawab penuh terhadap usulan pergeseran anggaran yang telah disampaikan sesuai dengan
+                surat Dinas Koperasi, Usaha Mikro dan Tenaga Kerja Nomor 400/372/Diskopumker-UM Tanggal 13 Juni 2023,
+                serta pelaksanaan anggaran setelah proses pergeseran disetujui oleh pejabat yang berwenang.<br />
+                2) Usulan Pergeseran Anggaran yang disampaikan telah sesuai dengan Peraturan Wali Kota Banjarmasin Nomor
+                18 Tahun 2023 tentang Tata Cara Pergeseran Anggaran Pendapatan dan Belanja Daerah.<br />
+                3) Usulan Pergeseran Anggaran telah diperhitungkan sampai dengan Objek/Rincian Objek/Sub Rincian Objek
+                dan telah sesuai dengan kebutuhan pada Dinas Koperasi, Usaha Mikro dan Tenaga Kerja dan dibuktikan
+                dengan matrik pergeseran anggaran yang telah kami sampaikan<br />
+                4) Penggunaan Anggaran bertanggung jawab atas kebenaran formil dan materiil usulan pergeseran anggaran
+                yang diajukan<br />
+                5) Apabila dikemudian hari terbukti pernyataan ini tidak benar dan menimbulkan kerugian negara, saya
+                bersedia menyetorkan kerugian negara tersebut di kas daerah<br />
+                6) Dalam hal terjadi permasalahan hukum yang diakibatkan pergeseran anggaran ini menjadi tanggungjawab
+                Pengguna Anggaran
+                <br /><br />
+                Demikian pernyataan ini dibuat dengan sesungguhnya dan sebenar-benarnya untuk digunakan sebagaimana
+                mestinya.
             </td>
+
         </tr>
     </table>
     <table width="100%">
         <tr>
             <td></td>
             <td width="50%"></td>
-            <td>Pengguna Anggaran,<br /><br /><br /><br /><br />
+            <td>Banjarmasin, {{\Carbon\Carbon::now()->format('d M Y')}}
+                <br />Kepala Dinas,<br />
+                Selaku Pengguna Anggaran
+                ,<br /><br /><br /><br /><br />
 
                 Dr.M.Ramadhan, SE.,ME.,Ak.,CA.<br />
                 Pembina Utama Muda<br />
