@@ -61,7 +61,7 @@ class AdminBerandaController extends Controller
     }
     public function storeSebelum(Request $req, $id)
     {
-        dd($req->all());
+        //dd($req->all());
         $rek = Rekening::find($req->rekawal);
 
         $ssh = SSH::find($req->ssh);

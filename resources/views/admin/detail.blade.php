@@ -357,6 +357,12 @@
             </div>
           </div>
 
+          <div class="col-xs-12">
+            <div class="form-group">
+              <label>Total Belanja</label>
+              <input type="text" class="form-control" placeholder="-" id="total_sebelum" name="total_sebelum" readonly>
+            </div>
+          </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Keluar</button>
