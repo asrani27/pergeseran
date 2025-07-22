@@ -74,7 +74,7 @@
         }
 
         .timer-wrapper {
-            display: inline-block;
+            display: inline-block;f
         }
 
         .timer {
