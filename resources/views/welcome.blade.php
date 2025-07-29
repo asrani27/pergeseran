@@ -75,7 +75,7 @@
 
   <!--====== SIDEBAR PART START ======-->
 
-  
+
   <div class="overlay-left"></div>
 
   <!--====== SIDEBAR PART ENDS ======-->
@@ -88,7 +88,7 @@
           <div class="header-content">
             <h1>PEMANTAU PERGESERAN BPKPAD</h1>
             <p>
-              Sistem dari dinas BPKPAD yang akan membantu kami dalam mengatur pengajuan pergeseran anggaran daerah 
+              Sistem dari dinas BPKPAD yang akan membantu kami dalam mengatur pengajuan pergeseran anggaran daerah
             </p>
             <div class="button">
               <a href="/login" class="btn primary-btn">Masuk</a>
@@ -116,11 +116,11 @@
   </section> --}}
   <!-- ========================= map-section end ========================= -->
 
-	{{-- <div class="made-in-ayroui mt-4">
-		<a href="https://ayroui.com" target="_blank" rel="nofollow">
-		  <img style="width:220px" src="assets/images/ayroui.svg">
-		</a>
-	</div>
+  {{-- <div class="made-in-ayroui mt-4">
+    <a href="https://ayroui.com" target="_blank" rel="nofollow">
+      <img style="width:220px" src="assets/images/ayroui.svg">
+    </a>
+  </div>
 
   <a href="#" class="scroll-top btn-hover">
     <i class="lni lni-chevron-up"></i>
@@ -133,7 +133,6 @@
   <script src="assets/js/tiny-slider.js"></script>
 
   <script>
-
     //===== close navbar-collapse when a  clicked
     let navbarTogglerNine = document.querySelector(
       ".navbar-nine .navbar-toggler"
