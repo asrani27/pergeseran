@@ -72,34 +72,22 @@
             <div class="col-xs-12">
               <div class="form-group">
                 <label>Program</label>
-                <select class="form-control select2" style="width: 100%;" disabled>
-                  @foreach ($program as $item)
-                  <option value="{{$item->id}}" {{$item->id == $data->id ? 'selected':''}}>{{$item->kode}} -
-                    {{$item->nama}}</option>
-                  @endforeach
-                </select>
+                <input type="text" class="form-control"
+                  value="{{$data->kode_program}} {{namaProgram($data->kode_program)}}" readonly>
               </div>
             </div>
             <div class="col-xs-12">
               <div class="form-group">
                 <label>Kegiatan</label>
-                <select class="form-control select2" style="width: 100%;" disabled name="kegiatan">
-                  @foreach ($kegiatan as $item)
-                  <option value="{{$item->id}}" {{$item->id == $data->id ? 'selected':''}}>{{$item->kode}} -
-                    {{$item->nama}}</option>
-                  @endforeach
-                </select>
+                <input type="text" class="form-control"
+                  value="{{$data->kode_kegiatan}} {{namaKegiatan($data->kode_kegiatan)}}" readonly>
               </div>
             </div>
             <div class="col-xs-12">
               <div class="form-group">
                 <label>Sub Kegiatan</label>
-                <select class="form-control select2" style="width: 100%;" disabled name="subkegiatan">
-                  @foreach ($subkegiatan as $item)
-                  <option value="{{$item->id}}" {{$item->id == $data->id ? 'selected':''}}>{{$item->kode}} -
-                    {{$item->nama}}</option>
-                  @endforeach
-                </select>
+                <input type="text" class="form-control"
+                  value="{{$data->kode_subkegiatan}} {{namaSubkegiatan($data->kode_subkegiatan)}}" readonly>
               </div>
             </div>
 
@@ -124,54 +112,58 @@
                       </div>
                       <!-- /.box-header -->
                       <div class="box-body" style="">
-
-
-                        {{-- <button type="button" class="btn btn-xs btn-primary" data-toggle="modal"
-                          data-target="#modal-default">
-                          Tambah
-                        </button><br /> --}}
                         <table class="table table-condensed">
-                          <tr style="background-color: aquamarine">
-                            <th>No</th>
-                            <th>Rekening Awal</th>
-                            <th>Jumlah</th>
-                            <th>Nominal</th>
+                          <tr style="background-color: aquamarine;">
+                            <th style="border:1px solid black">No</th>
+                            <th style="border:1px solid black">Rekening Awal</th>
+                            <th style="border:1px solid black">Jenis SSH</th>
+                            <th style="border:1px solid black">Spesifikasi Komponen</th>
+                            <th style="border:1px solid black">Satuan</th>
+                            <th style="border:1px solid black">Harga</th>
+                            <th style="border:1px solid black">Koefisien</th>
+                            <th style="border:1px solid black">Total</th>
+                            <th style="border:1px solid black"></th>
                           </tr>
-                          @foreach ($sebelum as $key => $item)
+                          @foreach ($sesudah as $key => $item)
                           <tr>
-                            <td>{{$key+1}}</td>
-                            <td>{{$item->rekawal}}</td>
-                            <td>{{$item->jumlah}}</td>
-                            <td>{{$item->nominal}}
-                              {{-- <a href="/admin/beranda/rekawal/{{$item->id}}" class="btn btn-xs btn-primary"
+                            <td style="border:1px solid black">{{$key+1}}</td>
+                            <td style="border:1px solid black">{{$item->kode_rekening}}<br />
+                              {{namaRekening($item->kode_rekening)}}
+                            </td>
+                            <td style="border:1px solid black">{{$item->jenis_ssh}}</td>
+                            <td style="border:1px solid black">{{$item->kode_komponen}}<br />
+                              {{namaKomponen($item->kode_komponen)->uraian}}
+                              {{namaKomponen($item->kode_komponen)->spesifikasi}}
+                            </td>
+                            <td style="border:1px solid black">{{$item->satuan}}</td>
+                            <td style="border:1px solid black; text-align:right;">{{number_format($item->harga)}}</td>
+                            <td style="border:1px solid black">
+                              Koefisien : <br />
+                              {{$item->koefisien1}} {{$item->satuan1}} <br />
+                              {{$item->koefisien2}} {{$item->satuan2}} <br />
+                              {{$item->koefisien3}} {{$item->satuan3}} <br />
+                            </td>
+                            <td style="border:1px solid black; text-align:right;">{{number_format($item->total)}}</td>
+                            <td style="border:1px solid black">
+                              @if ($data->status_operator != 2)
+                              <a href="/admin/beranda/hapussesudah/{{$item->id}}" class="btn btn-xs btn-danger"
                                 onclick="return confirm(' Yakin ingin di hapus?');">
-                                Hapus
-                              </a> --}}
+                                <i class="fa fa-times"></i> Hapus
+                              </a>
+                              @endif
                             </td>
                           </tr>
                           @endforeach
-
-
-                          <tr style="background-color: aquamarine">
-                            <th>No</th>
-                            <th>SSH</th>
-                            <th>Satuan</th>
-                            <th>Nominal</th>
-                          </tr>
-                          @foreach ($sebelum as $key => $item)
                           <tr>
-                            <td>{{$key+1}}</td>
-                            <td>{{$item->ssh}}</td>
-                            <td>{{$item->satuan}}</td>
-                            <td>{{number_format($item->nominalssh)}}</td>
+                            <td style="border:1px solid black; text-align:right; font-weight:bold" colspan=7>TOTAL</td>
+                            <td style="border:1px solid black; text-align:right;">
+                              {{number_format($sesudah->sum('total'))}}</td>
                           </tr>
-                          @endforeach
                         </table>
-
                       </div>
                       <!-- /.box-body -->
                       <div class="box-footer with-border">
-                        Total : {{number_format($sebelum->sum('total'))}}
+
                       </div>
                     </div>
                     <!-- /.box -->
@@ -185,52 +177,58 @@
                       <!-- /.box-header -->
                       <div class="box-body" style="">
 
-
-                        {{-- <button type="button" class="btn btn-xs btn-primary" data-toggle="modal"
-                          data-target="#modal-default2">
-                          Tambah
-                        </button><br /> --}}
                         <table class="table table-condensed">
-                          <tr style="background-color: aquamarine">
-                            <th>No</th>
-                            <th>Rekening Awal</th>
-                            <th>Jumlah</th>
-                            <th>Nominal</th>
+                          <tr style="background-color: aquamarine;">
+                            <th style="border:1px solid black">No</th>
+                            <th style="border:1px solid black">Rekening Awal</th>
+                            <th style="border:1px solid black">Jenis SSH</th>
+                            <th style="border:1px solid black">Spesifikasi Komponen</th>
+                            <th style="border:1px solid black">Satuan</th>
+                            <th style="border:1px solid black">Harga</th>
+                            <th style="border:1px solid black">Koefisien</th>
+                            <th style="border:1px solid black">Total</th>
+                            <th style="border:1px solid black"></th>
                           </tr>
                           @foreach ($sesudah as $key => $item)
                           <tr>
-                            <td>{{$key+1}}</td>
-                            <td>{{$item->rekawal}}</td>
-                            <td>{{$item->jumlah}}</td>
-                            <td>{{$item->nominal}}
-                              {{-- <a href="/admin/beranda/rekawal/{{$item->id}}" class="btn btn-xs btn-primary"
+                            <td style="border:1px solid black">{{$key+1}}</td>
+                            <td style="border:1px solid black">{{$item->kode_rekening}}<br />
+                              {{namaRekening($item->kode_rekening)}}
+                            </td>
+                            <td style="border:1px solid black">{{$item->jenis_ssh}}</td>
+                            <td style="border:1px solid black">{{$item->kode_komponen}}<br />
+                              {{namaKomponen($item->kode_komponen)->uraian}}
+                              {{namaKomponen($item->kode_komponen)->spesifikasi}}
+                            </td>
+                            <td style="border:1px solid black">{{$item->satuan}}</td>
+                            <td style="border:1px solid black; text-align:right;">{{number_format($item->harga)}}</td>
+                            <td style="border:1px solid black">
+                              Koefisien : <br />
+                              {{$item->koefisien1}} {{$item->satuan1}} <br />
+                              {{$item->koefisien2}} {{$item->satuan2}} <br />
+                              {{$item->koefisien3}} {{$item->satuan3}} <br />
+                            </td>
+                            <td style="border:1px solid black; text-align:right;">{{number_format($item->total)}}</td>
+                            <td style="border:1px solid black">
+                              @if ($data->status_operator != 2)
+                              <a href="/admin/beranda/hapussesudah/{{$item->id}}" class="btn btn-xs btn-danger"
                                 onclick="return confirm(' Yakin ingin di hapus?');">
-                                Hapus
-                              </a> --}}
+                                <i class="fa fa-times"></i> Hapus
+                              </a>
+                              @endif
                             </td>
                           </tr>
                           @endforeach
-
-
-                          <tr style="background-color: aquamarine">
-                            <th>No</th>
-                            <th>SSH</th>
-                            <th>Satuan</th>
-                            <th>Nominal</th>
-                          </tr>
-                          @foreach ($sesudah as $key => $item)
                           <tr>
-                            <td>{{$key+1}}</td>
-                            <td>{{$item->ssh}}</td>
-                            <td>{{$item->satuan}}</td>
-                            <td>{{number_format($item->nominalssh)}}</td>
+                            <td style="border:1px solid black; text-align:right; font-weight:bold" colspan=7>TOTAL</td>
+                            <td style="border:1px solid black; text-align:right;">
+                              {{number_format($sesudah->sum('total'))}}</td>
                           </tr>
-                          @endforeach
                         </table>
                       </div>
                       <!-- /.box-body -->
                       <div class="box-footer with-border">
-                        Total : {{number_format($sesudah->sum('total'))}}
+
                       </div>
                     </div>
                     <!-- /.box -->

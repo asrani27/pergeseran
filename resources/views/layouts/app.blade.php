@@ -294,6 +294,9 @@ console.log(tanggal,countDownDate);
   @stack('js')
 
 
+  <script type="text/javascript">
+    @include('layouts.notif')
+  </script>
 </body>
 
 </html>
