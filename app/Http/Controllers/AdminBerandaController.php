@@ -38,15 +38,10 @@ class AdminBerandaController extends Controller
 
     public function update($id)
     {
-        $sebelum = Sebelum::where('pengajuan_id', $id)->get()->map(function ($item) {
-            $item->total = $item->jumlah * $item->nominalssh;
-            return $item;
-        })->sum('total');
+        $sebelum = Sebelum::where('pengajuan_id', $id)->get()->sum('total');
 
-        $sesudah = Sesudah::where('pengajuan_id', $id)->get()->map(function ($item) {
-            $item->total = $item->jumlah * $item->nominalssh;
-            return $item;
-        })->sum('total');
+        $sesudah = Sesudah::where('pengajuan_id', $id)->get()->sum('total');
+
         if ($sebelum != $sesudah) {
             Session::flash('warning', 'Total sebelum tidak sama dengan total sesudah');
             return back();
@@ -61,18 +56,26 @@ class AdminBerandaController extends Controller
     }
     public function storeSebelum(Request $req, $id)
     {
-        //dd($req->all());
-        $rek = Rekening::find($req->rekawal);
+        $total =
+            (int) ($req->koefisien1 ?? 1) *
+            (int) ($req->koefisien2 ?? 1) *
+            (int) ($req->koefisien3 ?? 1) *
+            (int) str_replace(',', '', $req->harga_sebelum);
 
-        $ssh = SSH::find($req->ssh);
         $s = new Sebelum;
-        $s->pengajuan_id = $id;
-        $s->rekawal = $rek->kode . ' ' . $rek->nama;
-        $s->jumlah = $req->jumlah;
-        $s->nominal = 'nominal';
-        $s->ssh = $ssh->uraian;
-        $s->satuan = $ssh->satuan;
-        $s->nominalssh = $ssh->harga;
+        $s->pengajuan_id    = $id;
+        $s->kode_rekening   = $req->rekawal;
+        $s->jenis_ssh       = $req->jenisssh;
+        $s->kode_komponen   = $req->komponenawal;
+        $s->satuan          = $req->satuan_sebelum;
+        $s->harga           =  (int) str_replace(',', '', $req->harga_sebelum);
+        $s->koefisien1      = $req->koefisien1;
+        $s->koefisien2      = $req->koefisien2;
+        $s->koefisien3      = $req->koefisien3;
+        $s->satuan1         = $req->satuan1;
+        $s->satuan2         = $req->satuan2;
+        $s->satuan3         = $req->satuan3;
+        $s->total           = $total;
         $s->save();
         Session::flash('success', 'Berhasil disimpan');
         return back();
@@ -80,17 +83,26 @@ class AdminBerandaController extends Controller
 
     public function storeSesudah(Request $req, $id)
     {
-        $rek = Rekening::find($req->rekawal);
+        $total =
+            (int) ($req->koefisien1 ?? 1) *
+            (int) ($req->koefisien2 ?? 1) *
+            (int) ($req->koefisien3 ?? 1) *
+            (int) str_replace(',', '', $req->harga_sesudah);
 
-        $ssh = SSH::find($req->ssh);
-        $s = new Sesudah;
-        $s->pengajuan_id = $id;
-        $s->rekawal = $rek->kode . ' ' . $rek->nama;
-        $s->jumlah = $req->jumlah;
-        $s->nominal = 'nominal';
-        $s->ssh = $ssh->uraian;
-        $s->satuan = $ssh->satuan;
-        $s->nominalssh = $ssh->harga;
+        $s = new Sesudah();
+        $s->pengajuan_id    = $id;
+        $s->kode_rekening   = $req->rekakhir;
+        $s->jenis_ssh       = $req->jenisssh;
+        $s->kode_komponen   = $req->komponenakhir;
+        $s->satuan          = $req->satuan_sesudah;
+        $s->harga           =  (int) str_replace(',', '', $req->harga_sesudah);
+        $s->koefisien1      = $req->koefisien1;
+        $s->koefisien2      = $req->koefisien2;
+        $s->koefisien3      = $req->koefisien3;
+        $s->satuan1         = $req->satuan1;
+        $s->satuan2         = $req->satuan2;
+        $s->satuan3         = $req->satuan3;
+        $s->total           = $total;
         $s->save();
         Session::flash('success', 'Berhasil disimpan');
         return back();
@@ -107,26 +119,23 @@ class AdminBerandaController extends Controller
             ->get(['kode_rekening', 'nama_rekening']);
 
         $ssh = SSH::get();
-        //dd($rekening, $data, $tahun, $kode_skpd);
-        // $program = Program::where('skpd_id', Auth::user()->skpd->id)->get();
-        // $kegiatan = Kegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
-        // $subkegiatan = Subkegiatan::where('skpd_id', Auth::user()->skpd->id)->get();
-        // $rekening = RekeningBelanja::where('skpd_id', Auth::user()->skpd->id)->where('subkegiatan_id', $id)->get();
-        // $rekening_menjadi = Rekening::where('skpd_id', Auth::user()->skpd->id)->get();
-        // $ssh = SSH::get();
-
-        // $sebelum = Sebelum::where('pengajuan_id', $id)->get()->map(function ($item) {
-        //     $item->total = $item->jumlah * $item->nominalssh;
-        //     return $item;
-        // });
-
-        // $sesudah = Sesudah::where('pengajuan_id', $id)->get()->map(function ($item) {
-        //     $item->total = $item->jumlah * $item->nominalssh;
-        //     return $item;
-        // });
-        return view('admin.detail', compact('data', 'rekening', 'ssh'));
+        $sebelum = Sebelum::where('pengajuan_id', $id)->get();
+        $sesudah = Sesudah::where('pengajuan_id', $id)->get();
+        return view('admin.detail', compact('data', 'rekening', 'ssh', 'sebelum', 'sesudah'));
     }
 
+    public function hapussebelum($id)
+    {
+        Sebelum::find($id)->delete();
+        Session::flash('success', 'Berhasil dihapus');
+        return back();
+    }
+    public function hapussesudah($id)
+    {
+        Sesudah::find($id)->delete();
+        Session::flash('success', 'Berhasil dihapus');
+        return back();
+    }
     //     public function duplikatData()
     //     {
     //         //Membuka pergeseran, duplikat data mulai dari program, kegiatan, subkegiatan dan uraian berdasarkan tahun

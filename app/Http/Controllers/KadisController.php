@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\SSH;
 use App\Models\Program;
 use App\Models\Sebelum;
@@ -11,6 +12,7 @@ use App\Models\Rekening;
 use App\Models\Pengajuan;
 use App\Models\Subkegiatan;
 use Illuminate\Http\Request;
+use App\Models\RekeningBelanja;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -24,41 +26,33 @@ class KadisController extends Controller
     public function pengajuan($id)
     {
         $data = Pengajuan::find($id);
-        $program = Program::where('skpd_id', Auth::user()->kepala->id)->get();
-        $kegiatan = Kegiatan::where('skpd_id', Auth::user()->kepala->id)->get();
-        $subkegiatan = Subkegiatan::where('skpd_id', Auth::user()->kepala->id)->get();
-        $rekening = Rekening::where('skpd_id', Auth::user()->kepala->id)->get();
-        $ssh = SSH::get();
-        $sebelum = Sebelum::where('pengajuan_id', $id)->get()->map(function ($item) {
-            $item->total = $item->jumlah * $item->nominalssh;
-            return $item;
-        });
+        $tahun = Carbon::parse($data->tanggal)->format('Y');
+        $kode_skpd = $data->skpd->kode_skpd;
+        $kode_subkegiatan = $data->kode_subkegiatan;
 
-        $sesudah = Sesudah::where('pengajuan_id', $id)->get()->map(function ($item) {
-            $item->total = $item->jumlah * $item->nominalssh;
-            return $item;
-        });
-        return view('kadis.pengajuan.index', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh', 'sebelum', 'sesudah'));
+        $rekening = RekeningBelanja::where('tahun', $tahun)->where('kode_skpd', $kode_skpd)->where('kode_subkegiatan', $kode_subkegiatan)->groupBy('kode_rekening', 'nama_rekening')
+            ->get(['kode_rekening', 'nama_rekening']);
+
+        $ssh = SSH::get();
+        $sebelum = Sebelum::where('pengajuan_id', $id)->get();
+        $sesudah = Sesudah::where('pengajuan_id', $id)->get();
+        return view('kadis.pengajuan.index', compact('data', 'rekening', 'ssh', 'sebelum', 'sesudah'));
     }
 
     public function detail($id)
     {
         $data = Pengajuan::find($id);
-        $program = Program::where('skpd_id', Auth::user()->kepala->id)->get();
-        $kegiatan = Kegiatan::where('skpd_id', Auth::user()->kepala->id)->get();
-        $subkegiatan = Subkegiatan::where('skpd_id', Auth::user()->kepala->id)->get();
-        $rekening = Rekening::where('skpd_id', Auth::user()->kepala->id)->get();
-        $ssh = SSH::get();
-        $sebelum = Sebelum::where('pengajuan_id', $id)->get()->map(function ($item) {
-            $item->total = $item->jumlah * $item->nominalssh;
-            return $item;
-        });
+        $tahun = Carbon::parse($data->tanggal)->format('Y');
+        $kode_skpd = $data->skpd->kode_skpd;
+        $kode_subkegiatan = $data->kode_subkegiatan;
 
-        $sesudah = Sesudah::where('pengajuan_id', $id)->get()->map(function ($item) {
-            $item->total = $item->jumlah * $item->nominalssh;
-            return $item;
-        });
-        return view('kadis.pengajuan.detail', compact('data', 'program', 'kegiatan', 'subkegiatan', 'rekening', 'ssh', 'sebelum', 'sesudah'));
+        $rekening = RekeningBelanja::where('tahun', $tahun)->where('kode_skpd', $kode_skpd)->where('kode_subkegiatan', $kode_subkegiatan)->groupBy('kode_rekening', 'nama_rekening')
+            ->get(['kode_rekening', 'nama_rekening']);
+
+        $ssh = SSH::get();
+        $sebelum = Sebelum::where('pengajuan_id', $id)->get();
+        $sesudah = Sesudah::where('pengajuan_id', $id)->get();
+        return view('kadis.pengajuan.detail', compact('data', 'rekening', 'ssh', 'sebelum', 'sesudah'));
     }
     public function search()
     {

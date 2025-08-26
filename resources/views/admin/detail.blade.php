@@ -107,6 +107,7 @@
                     <div class="box-header with-border">
                       <h3 class="box-title">Sebelum Dirubah</h3>
                       <!-- /.box-tools -->
+
                     </div>
                     <!-- /.box-header -->
                     <div class="box-body" style="">
@@ -118,43 +119,52 @@
                       </button><br />
                       @endif
                       <table class="table table-condensed">
-                        <tr style="background-color: aquamarine">
-                          <th>No</th>
-                          <th>Rekening Awal</th>
-                          <th>Jumlah</th>
-                          <th>Nominal</th>
+                        <tr style="background-color: aquamarine;">
+                          <th style="border:1px solid black">No</th>
+                          <th style="border:1px solid black">Rekening Awal</th>
+                          <th style="border:1px solid black">Jenis SSH</th>
+                          <th style="border:1px solid black">Spesifikasi Komponen</th>
+                          <th style="border:1px solid black">Satuan</th>
+                          <th style="border:1px solid black">Harga</th>
+                          <th style="border:1px solid black">Koefisien</th>
+                          <th style="border:1px solid black">Total</th>
+                          <th style="border:1px solid black"></th>
                         </tr>
-                        {{-- @foreach ($sebelum as $key => $item)
+                        @foreach ($sebelum as $key => $item)
                         <tr>
-                          <td>{{$key+1}}</td>
-                          <td>{{$item->rekawal}}</td>
-                          <td>{{$item->jumlah}}</td>
-                          <td>{{$item->nominal}}
+                          <td style="border:1px solid black">{{$key+1}}</td>
+                          <td style="border:1px solid black">{{$item->kode_rekening}}<br />
+                            {{namaRekening($item->kode_rekening)}}
+                          </td>
+                          <td style="border:1px solid black">{{$item->jenis_ssh}}</td>
+                          <td style="border:1px solid black">{{$item->kode_komponen}}<br />
+                            {{namaKomponen($item->kode_komponen)->uraian}}
+                            {{namaKomponen($item->kode_komponen)->spesifikasi}}
+                          </td>
+                          <td style="border:1px solid black">{{$item->satuan}}</td>
+                          <td style="border:1px solid black; text-align:right;">{{number_format($item->harga)}}</td>
+                          <td style="border:1px solid black">
+                            Koefisien : <br />
+                            {{$item->koefisien1}} {{$item->satuan1}} <br />
+                            {{$item->koefisien2}} {{$item->satuan2}} <br />
+                            {{$item->koefisien3}} {{$item->satuan3}} <br />
+                          </td>
+                          <td style="border:1px solid black; text-align:right;">{{number_format($item->total)}}</td>
+                          <td style="border:1px solid black">
                             @if ($data->status_operator != 2)
-                            <a href="/admin/beranda/rekawal/{{$item->id}}" class="btn btn-xs btn-primary"
+                            <a href="/admin/beranda/hapussebelum/{{$item->id}}" class="btn btn-xs btn-danger"
                               onclick="return confirm(' Yakin ingin di hapus?');">
-                              Hapus
+                              <i class="fa fa-times"></i> Hapus
                             </a>
                             @endif
                           </td>
                         </tr>
-                        @endforeach --}}
-
-
-                        <tr style="background-color: aquamarine">
-                          <th>No</th>
-                          <th>SSH</th>
-                          <th>Satuan</th>
-                          <th>Nominal</th>
-                        </tr>
-                        {{-- @foreach ($sebelum as $key => $item)
+                        @endforeach
                         <tr>
-                          <td>{{$key+1}}</td>
-                          <td>{{$item->ssh}}</td>
-                          <td>{{$item->satuan}}</td>
-                          <td>{{number_format($item->nominalssh)}}</td>
+                          <td style="border:1px solid black; text-align:right; font-weight:bold" colspan=7>TOTAL</td>
+                          <td style="border:1px solid black; text-align:right;">
+                            {{number_format($sebelum->sum('total'))}}</td>
                         </tr>
-                        @endforeach --}}
                       </table>
 
                     </div>
@@ -180,49 +190,59 @@
                         Tambah
                       </button><br />
                       @endif
+
                       <table class="table table-condensed">
-                        <tr style="background-color: aquamarine">
-                          <th>No</th>
-                          <th>Rekening Awal</th>
-                          <th>Jumlah</th>
-                          <th>Nominal</th>
+                        <tr style="background-color: aquamarine;">
+                          <th style="border:1px solid black">No</th>
+                          <th style="border:1px solid black">Rekening Awal</th>
+                          <th style="border:1px solid black">Jenis SSH</th>
+                          <th style="border:1px solid black">Spesifikasi Komponen</th>
+                          <th style="border:1px solid black">Satuan</th>
+                          <th style="border:1px solid black">Harga</th>
+                          <th style="border:1px solid black">Koefisien</th>
+                          <th style="border:1px solid black">Total</th>
+                          <th style="border:1px solid black"></th>
                         </tr>
-                        {{-- @foreach ($sesudah as $key => $item)
+                        @foreach ($sesudah as $key => $item)
                         <tr>
-                          <td>{{$key+1}}</td>
-                          <td>{{$item->rekawal}}</td>
-                          <td>{{$item->jumlah}}</td>
-                          <td>{{$item->nominal}}
+                          <td style="border:1px solid black">{{$key+1}}</td>
+                          <td style="border:1px solid black">{{$item->kode_rekening}}<br />
+                            {{namaRekening($item->kode_rekening)}}
+                          </td>
+                          <td style="border:1px solid black">{{$item->jenis_ssh}}</td>
+                          <td style="border:1px solid black">{{$item->kode_komponen}}<br />
+                            {{namaKomponen($item->kode_komponen)->uraian}}
+                            {{namaKomponen($item->kode_komponen)->spesifikasi}}
+                          </td>
+                          <td style="border:1px solid black">{{$item->satuan}}</td>
+                          <td style="border:1px solid black; text-align:right;">{{number_format($item->harga)}}</td>
+                          <td style="border:1px solid black">
+                            Koefisien : <br />
+                            {{$item->koefisien1}} {{$item->satuan1}} <br />
+                            {{$item->koefisien2}} {{$item->satuan2}} <br />
+                            {{$item->koefisien3}} {{$item->satuan3}} <br />
+                          </td>
+                          <td style="border:1px solid black; text-align:right;">{{number_format($item->total)}}</td>
+                          <td style="border:1px solid black">
                             @if ($data->status_operator != 2)
-                            <a href="/admin/beranda/menjadi/{{$item->id}}" class="btn btn-xs btn-primary"
+                            <a href="/admin/beranda/hapussesudah/{{$item->id}}" class="btn btn-xs btn-danger"
                               onclick="return confirm(' Yakin ingin di hapus?');">
-                              Hapus
+                              <i class="fa fa-times"></i> Hapus
                             </a>
                             @endif
                           </td>
                         </tr>
-                        @endforeach --}}
-
-
-                        <tr style="background-color: aquamarine">
-                          <th>No</th>
-                          <th>SSH</th>
-                          <th>Satuan</th>
-                          <th>Nominal</th>
-                        </tr>
-                        {{-- @foreach ($sesudah as $key => $item)
+                        @endforeach
                         <tr>
-                          <td>{{$key+1}}</td>
-                          <td>{{$item->ssh}}</td>
-                          <td>{{$item->satuan}}</td>
-                          <td>{{number_format($item->nominalssh)}}</td>
+                          <td style="border:1px solid black; text-align:right; font-weight:bold" colspan=7>TOTAL</td>
+                          <td style="border:1px solid black; text-align:right;">
+                            {{number_format($sesudah->sum('total'))}}</td>
                         </tr>
-                        @endforeach --}}
                       </table>
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer with-border">
-                      {{-- Total : {{number_format($sesudah->sum('total'))}} --}}
+
                     </div>
                   </div>
                   <!-- /.box -->
@@ -290,23 +310,11 @@
           </div>
           <div class="col-xs-12">
             <div class="form-group">
-              <label>Komponen</label>
-              <select class="form-control select2" style="width: 100%;" required name="komponenawal">
-                <option value="" selected>-</option>
-                @foreach ($ssh as $item)
-                <option value="{{$item->kode}}">{{$item->kode}} - {{$item->uraian}}</option>
-                @endforeach
-              </select>
-            </div>
-          </div>
-          <div class="col-xs-12">
-            <div class="form-group">
               <label>Spesifikasi Komponen</label>
-              <select id="spesifikasi" class="form-control select2" style="width: 100%;" required
-                name="spekkomponenawal">
+              <select id="spesifikasi" class="form-control select2" style="width: 100%;" required name="komponenawal">
                 <option value="" selected>-</option>
                 @foreach ($ssh as $item)
-                <option value="{{$item->kode}}">{{$item->kode}} - {{$item->spesifikasi}}</option>
+                <option value="{{$item->kode}}">{{$item->kode}} - {{$item->uraian}} - {{$item->spesifikasi}}</option>
                 @endforeach
               </select>
             </div>
@@ -328,9 +336,9 @@
           <div class="col-xs-6">
             <div class="form-group">
               <label>Koefisien</label>
-              <input type="text" class="form-control">
-              <input type="text" class="form-control">
-              <input type="text" class="form-control">
+              <input type="text" class="form-control" name="koefisien1" required>
+              <input type="text" class="form-control" name="koefisien2">
+              <input type="text" class="form-control" name="koefisien3">
             </div>
           </div>
           <div class="col-xs-6">
@@ -342,13 +350,13 @@
                 <option value="{{$item->nama}}">{{$item->nama}}</option>
                 @endforeach
               </select>
-              <select class="form-control select2" style="width: 100%;" name="satuan1">
+              <select class="form-control select2" style="width: 100%;" name="satuan2">
                 <option value="" selected>-</option>
                 @foreach (satuan() as $item)
                 <option value="{{$item->nama}}">{{$item->nama}}</option>
                 @endforeach
               </select>
-              <select class="form-control select2" style="width: 100%;" name="satuan1">
+              <select class="form-control select2" style="width: 100%;" name="satuan3">
                 <option value="" selected>-</option>
                 @foreach (satuan() as $item)
                 <option value="{{$item->nama}}">{{$item->nama}}</option>
@@ -357,12 +365,12 @@
             </div>
           </div>
 
-          <div class="col-xs-12">
+          {{-- <div class="col-xs-12">
             <div class="form-group">
               <label>Total Belanja</label>
               <input type="text" class="form-control" placeholder="-" id="total_sebelum" name="total_sebelum" readonly>
             </div>
-          </div>
+          </div> --}}
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Keluar</button>
@@ -384,12 +392,12 @@
         <h4 class="modal-title">Menjadi </h4>
       </div>
       <div class="modal-body">
-        <form method="post" action="/admin/beranda/detail/{{$data->id}}/sebelum">
+        <form method="post" action="/admin/beranda/detail/{{$data->id}}/sesudah">
           @csrf
           <div class="col-xs-12">
             <div class="form-group">
               <label>Rekening / Akun</label>
-              <select id="rekeningawal" class="form-control select2" style="width: 100%;" required name="rekawal">
+              <select id="rekeningakhir" class="form-control select2" style="width: 100%;" required name="rekakhir">
                 <option value="" selected>-</option>
                 @foreach ($rekening as $item)
                 <option value="{{$item->kode_rekening}}">{{$item->kode_rekening}} - {{$item->nama_rekening}}</option>
@@ -412,14 +420,16 @@
           <div class="col-xs-12">
             <div class="form-group">
               <label>Komponen</label>
-              <select id="komponenawal" class="form-control select2" style="width: 100%;" required name="komponenawal">
+              <select id="spesifikasi_akhir" class="form-control select2" style="width: 100%;" required
+                name="komponenakhir">
+                <option value="" selected>-</option>
                 @foreach ($ssh as $item)
-                <option value="{{$item->kode}}">{{$item->kode}} - {{$item->uraian}}</option>
+                <option value="{{$item->kode}}">{{$item->kode}} - {{$item->uraian}} - {{$item->spesifikasi}}</option>
                 @endforeach
               </select>
             </div>
           </div>
-          <div class="col-xs-12">
+          {{-- <div class="col-xs-12">
             <div class="form-group">
               <label>Spesifikasi Komponen</label>
               <select id="spekkomponenawal" class="form-control select2" style="width: 100%;" required
@@ -427,39 +437,50 @@
                 <option selected="">-</option>
               </select>
             </div>
-          </div>
+          </div> --}}
           <div class="col-xs-12">
             <div class="form-group">
               <label>Satuan</label>
-              <input type="text" class="form-control" placeholder="-" readonly>
+              <input type="text" class="form-control" placeholder="-" id="satuan_sesudah" name='satuan_sesudah'
+                readonly>
             </div>
           </div>
           <div class="col-xs-12">
             <div class="form-group">
               <label>Harga Satuan</label>
-              <input type="text" class="form-control" placeholder="-" readonly>
+              <input type="text" class="form-control" placeholder="-" id="harga_sesudah" name='harga_sesudah' readonly>
             </div>
           </div>
 
           <div class="col-xs-6">
             <div class="form-group">
               <label>Koefisien</label>
-              <input type="text" class="form-control" required>
-              <input type="text" class="form-control" required>
-              <input type="text" class="form-control" required>
+              <input type="text" class="form-control" name="koefisien1" required>
+              <input type="text" class="form-control" name="koefisien2">
+              <input type="text" class="form-control" name="koefisien3">
             </div>
           </div>
+
           <div class="col-xs-6">
             <div class="form-group">
               <label>Satuan</label>
-              <select class="form-control select2" style="width: 100%;" required name="satuan1">
+              <select class="form-control select2" style="width: 100%;" name="satuan1">
                 <option value="" selected>-</option>
+                @foreach (satuan() as $item)
+                <option value="{{$item->nama}}">{{$item->nama}}</option>
+                @endforeach
               </select>
-              <select class="form-control select2" style="width: 100%;" required name="satuan1">
+              <select class="form-control select2" style="width: 100%;" name="satuan2">
                 <option value="" selected>-</option>
+                @foreach (satuan() as $item)
+                <option value="{{$item->nama}}">{{$item->nama}}</option>
+                @endforeach
               </select>
-              <select class="form-control select2" style="width: 100%;" required name="satuan1">
+              <select class="form-control select2" style="width: 100%;" name="satuan3">
                 <option value="" selected>-</option>
+                @foreach (satuan() as $item)
+                <option value="{{$item->nama}}">{{$item->nama}}</option>
+                @endforeach
               </select>
             </div>
           </div>
@@ -504,13 +525,20 @@ $("#spesifikasi").change(function(){
     console.log(response.data);
     document.getElementById("satuan_sebelum").value =response.data.satuan;
     document.getElementById("harga_sebelum").value =response.data.harga.toLocaleString('en-US');
-    // $("#kegiatan").html('');
-    // $("#subkegiatan").html('');
-    // $("#kegiatan").append('<option value="">-pilih kegiatan-</option>');
-    // for (var i = 0; i < response.data.length; i++) 
-    // {
-    //   $("#kegiatan").append('<option value="' + response.data[i].kode_kegiatan + '">' + response.data[i].kode_kegiatan +' '+ response.data[i].nama_kegiatan +  '</option>');
-    // }
+    });
+  });
+
+  $("#spesifikasi_akhir").change(function(){
+  var id_spesifikasi = $("#spesifikasi_akhir").val(); 
+  console.log(id_spesifikasi);
+  axios({
+    method: 'get',
+    url: '/ssh/'+id_spesifikasi,
+  })
+  .then(function (response) {
+    console.log(response.data);
+    document.getElementById("satuan_sesudah").value =response.data.satuan;
+    document.getElementById("harga_sesudah").value =response.data.harga.toLocaleString('en-US');
     });
   });
 

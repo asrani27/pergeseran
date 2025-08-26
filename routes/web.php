@@ -101,6 +101,8 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::prefix('admin')->group(function () {
         Route::get('beranda', [AdminBerandaController::class, 'index']);
         Route::get('beranda/detail/{id}', [AdminBerandaController::class, 'detail']);
+        Route::get('beranda/hapussebelum/{id}', [AdminBerandaController::class, 'hapussebelum']);
+        Route::get('beranda/hapussesudah/{id}', [AdminBerandaController::class, 'hapussesudah']);
         Route::get('beranda/detail/{id}/update', [AdminBerandaController::class, 'update']);
         Route::get('beranda/rekawal/{id}', [AdminBerandaController::class, 'deleteRekawal']);
         Route::get('beranda/menjadi/{id}', [AdminBerandaController::class, 'deleteMenjadi']);
