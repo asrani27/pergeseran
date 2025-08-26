@@ -44,7 +44,7 @@ class SSHController extends Controller
             $reader = new Xlsx();
             $spreadsheet = $reader->load($path);
             $sheet = $spreadsheet->getActiveSheet()->toArray();
-            //dd($sheet);
+            dd($sheet);
             foreach ($sheet as $key => $item) {
                 if ($key != 0) {
                     $str_arr = explode(",", $item[8]);

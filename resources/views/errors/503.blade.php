@@ -74,7 +74,8 @@
         }
 
         .timer-wrapper {
-            display: inline-block;f
+            display: inline-block;
+            f
         }
 
         .timer {
@@ -102,14 +103,14 @@
     <div class="container">
         <h1>🚧 Maintenance</h1>
         <p>Situs sedang dalam Pengembangan.<br>Akan selesai beberapa saat lagi.</p>
-        <div class="timer-wrapper">
+        {{-- <div class="timer-wrapper">
             <div class="timer" id="countdown">06 : 00 : 00</div>
             <div class="label">
                 <span>jam</span>
                 <span>menit</span>
                 <span>detik</span>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <script>
